@@ -1,0 +1,257 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Tableau{% endblock %}
+
+{% block body %}    
+<div style="display:flex;flex-direction:row;">
+    <div style="display:block;flex-direction:row;">
+        <div  id="offbar" style="height:100vh;display:none;border:grey 1px solid;width:100%;background-color:#fbfbfb;" >
+            <div>
+                <h5 style="float:left;padding:15px;" id="offcanvasExampleLabel">Vos tableaux</h5>
+                <button id="closeoffbar" style="float:right;padding:15px;" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            
+            <div style="display:flex;flex-direction:column;width:100%;margin-top:5rem;" class="offcanvas-body">
+                {% for tableau in tableaux %}
+                    <a class="lien" style="padding:5px 5px 5px 30px;text-decoration:none;color:black;" href="{{ path('app_tableau_show', {'id': tableau.id}) }}">{{tableau.name}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <button id="offbarArrow" style="display:block;margin-top:9px;width:15px;height:2rem;border-radius:0px;padding:0px" class="btn btn-primary" type="button">
+            <p>><p>
+        </button>
+    </div>
+
+    <div style="display:block;">
+        <div style="display:flex;margin-bottom:3rem;">
+            <h1 style="margin:0 3rem 0 3rem;">{{tableau.name}}</h1>
+            <div class="btn-group dropend">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sliders" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
+                    </svg>
+                </button>
+                <ul style="padding:10px;" class="dropdown-menu">
+                    {% if colonnes is not empty %}
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nouveauTicketModal">
+                            Nouveau Ticket
+                        </button>
+                    {% endif %}
+                    <br/>
+                    <br/>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nouvelleColonneModal">
+                        Nouvelle Colonne
+                    </button>
+                    <br/>
+                    <br/>
+                     {{ include('tableau/_delete_form.html.twig') }}
+                </ul>
+            </div>
+        </div>
+        <input style="margin-bottom:1rem;" id="myInput" type="text" placeholder="Search..">
+        
+        {% if colonnes is not empty %}
+            <br/>
+            <div id="{{tableau.id}}" class="tableau">
+                    {% for colonne in colonnes %}
+                        <div class="colonneContainer" style="width:400px;height:75vh;display:inline-block;margin-left:3rem;overflow:auto;" id="{{colonne.position}}">
+                            <div class="colonne" id="{{colonne.id}}" style="display:inline-block;background-color:#f1f2f4;width:350px;border-radius:15px;padding:15px;height: 75vh;overflow: auto;">
+                                <a data-bs-toggle="modal"  data-bs-target="#voirColonneModal{{colonne.id}}" id="{{colonne.id}}"><p style="margin-bottom:2rem;">{{colonne.name}}</p></a>
+                                <div class="modal fade editFormColonne" id="voirColonneModal{{colonne.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{colonne.name}}</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    <div class="container-fluid">
+                                                    <form id="editFormColonne">
+                                                        <div class="row form-group">
+                                                            <div class="col-sm-2">
+                                                                <label class="control-label" style="position:inline; top:7px;">name:</label>
+                                                            </div>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control name" id="nameColonne" value="{{colonne.name}}" name="name{{colonne.id}}">
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                    </div>
+                                                    <div class="modal-footer justify-content-between">
+                                                        <a class="btn btn-danger" href="{{path('app_colonne_delete',{'id':colonne.id})}}" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                                        <div>
+                                                            <button type="button" class="btn btn-default" data-bs-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Update</a>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                {% for ticket in tickets %}
+                                    {% if ticket.colonne.name == colonne.name %}
+                                        <a data-bs-toggle="modal" data-bs-target="#voirTicketModal{{ticket.id}}" id="{{ticket.id}}" style="text-decoration:none;" class="ticket">
+                                            <div style="background-color:#ffffff; border:1px solid grey;border-radius:5%;padding:2%;margin-bottom:1rem;">
+                                            {% set color , date = "black" , "now"|date('Y-m-d') %}
+                                            {% if ticket.date|date('Y-m-d') > date|date('Y-m-d') %}
+                                                {% set color = "red" %}
+                                            {% elseif ticket.date|date('Y-m-d') > date|date_modify("-3day")|date('Y-m-d') %}
+                                                {% set color = "orange" %}
+                                            {% elseif ticket.date|date('Y-m-d') < date|date_modify("-3day")|date('Y-m-d') %}
+                                                {% set color = "green" %}
+                                            {% endif %}
+                                                <p style="font-size:0.7rem;margin-bottom:-0.5rem;color:{{color }}">
+                                                    {{ticket.date ? ticket.date|date('Y-m-d') : ""}}
+                                                <p>
+                                                <p id="p1{{ticket.id}}" style="color:black;">{{ticket.name}}</p>
+                                                {# <p id="p2{{ticket.id}}" style="color:black;">{{ticket.description}}</p> #}
+                                            </div>
+                                        </a>
+                                        <div class="modal fade editForm" id="voirTicketModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{ticket.name}}</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                    <div class="container-fluid">
+                                                    <form id="editForm">
+                                                        <div class="row form-group">
+                                                            <div class="col-sm-2">
+                                                                <label class="control-label" style="position:inline; top:7px;">Due Date:</label>
+                                                            </div>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" value={{ticket.date ? ticket.date|date('Y-m-d') : "..."}}  id="date{{ticket.id}}" class="datepicker form-control date{{ticket.name}}">
+                                                            </div>
+                                                        </div>
+                                                        </br>
+                                                        <div class="row form-group">
+                                                            <div class="col-sm-2">
+                                                                <label class="control-label" style="position:inline; top:7px;">name:</label>
+                                                            </div>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control name" id="name" value="{{ticket.name}}" name="name{{ticket.id}}">
+                                                            </div>
+                                                        </div>
+                                                        </br>
+                                                        <div class="form-group">
+                                                            <div class="col-sm-2">
+                                                                <label class="control-label" style="position:inline; top:7px;">Description:</label>
+                                                            </div>
+                                                            <div class="col-sm-15">
+                                                                <textArea type="textArea" rows="5" class="form-control description" id="description" description="description">{{ticket.description}}</textArea>
+                                                            </div>
+                                                            </br>
+                                                             <textArea class="newtxt{{ticket.id}}" id="newtxt" type="textArea" style="width:100%;overflow-wrap: break-word;" placeholder="Écrire un commentaire"></textArea>
+                                                        </div>
+                                                    </div>
+                                                    {% if ticket.comments is not empty %}
+                                                        {% for comment in ticket.comments %}
+                                                        </br>
+                                                            <div>
+                                                                <div style="display:flex;flex-direction:column;" id="comment{{comment.id}}">
+                                                                    <div style="display:flex;flex-direction:row; margin-bottom:-1.1rem;">
+                                                                        <p style="font-weight:bold;font-size:0.7rem;"> {{comment.owner.username}}</p>
+                                                                        <p style="margin-left:0.5rem;font-size:0.7rem;"> {{comment.date|date('Y-m-d à h:i')}}{{comment.modifie ? "(modifié)" : "" }}</p>
+                                                                    </div>
+                                                                    
+                                                                    <textArea class="txt" id="area" {{app.user == comment.owner ?"" : "disabled" }} type="textArea" style="width:100%;overflow-wrap: break-word;">{{comment.text}}</textArea>
+                                                                    {% if app.user == comment.owner %}
+                                                                        <a style="font-size:0.7rem;color:grey;" href="{{path('app_comment_delete',{'id':comment.id})}}" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                                                    {% endif %}
+                                                                    
+                                                                    {# <textArea class="txt" id="2" type="textArea" style="width:100%;overflow-wrap: break-word;">woopidyscoop</textArea> #}
+                                                                </div>
+                                                            </div>
+                                                            </br>
+                                                        {% endfor %}
+                                                    {% endif %} 
+                                                    </div>
+                                                    <div class="modal-footer justify-content-between">
+                                                        <a class="btn btn-danger" href="{{path('app_ticket_delete',{'id':ticket.id})}}" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                                        <div>
+                                                            <button type="button" class="btn btn-default" data-bs-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Update</a>
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+            </div>
+        {% endif %}
+
+        
+        <!-- Modal nouvelle colonne -->
+        <div class="modal fade" id="nouvelleColonneModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create a new Column</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(form2,{'action' : path('app_colonne_new',{'id':tableau.id})}) }}
+                            <div style="display:flex;flex-direction:column;" class="mb-3">
+                                <label for="ticketName" class="form-label">Name</label>
+                                {{ form_widget(form2.name) }}
+                            </div>
+                        <br/>
+                        <div style="display:flex;">
+                            <button style="width:100px;margin:0 auto;" class="btn btn btn-primary">{{ button_label|default('Save') }}</button>
+                        </div>
+                        {{ form_end(form2) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Modal nouveau ticket -->
+        <div class="modal fade" id="nouveauTicketModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create a new Ticket</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(form,{'action' : path('app_ticket_new',{'id':tableau.id})}) }}
+                            <div style="display:flex;flex-direction:column;" class="mb-3">
+                                <label for="ticketName" class="form-label">Name</label>
+                                {{ form_widget(form.name) }}
+                            </div>
+                            <div style="display:flex;flex-direction:column;" class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                {{ form_widget(form.description) }}
+                            </div>
+                        <br/>
+                        <div style="display:flex;">
+                            <button style="width:100px;margin:0 auto;" class="btn btn btn-primary">{{ button_label|default('Save') }}</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+            </br>
+            </br>
+        </div>
+    </div>
+</div>
+<div>
+    {% if colonnes is empty%}
+        <p style="text-align:center;">Ce tableau est vide. <a style="color:blue;" data-bs-toggle="modal" data-bs-target="#nouvelleColonneModal">Ajouter une colonne.</a></p>
+        {% else %}
+            {% if tickets is empty %}
+                <p style="text-align:center;">Ce tableau contient une colonne mais pas de ticket. <a style="color:blue;" data-bs-toggle="modal" data-bs-target="#nouveauTicketModal">Ajouter un ticket.</a></p>
+            {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

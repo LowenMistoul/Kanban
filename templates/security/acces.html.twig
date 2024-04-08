@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if app.user %}
+        <p style="text-align:center;">Il semble que vous n'ayez pas accés à ce tableau, veuillez en contacter le propriétaire</p>
+    {% else %}
+        <p style="text-align:center;">Il semble que vous ne soyez pas connecté. <a href="/" style="color:blue;">Connectez-vous<a></p>
+    {% endif %}
+{% endblock %}

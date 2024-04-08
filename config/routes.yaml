@@ -1,0 +1,55 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+
+user_registration:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+
+app_login:
+    path: /
+    controller: App\Controller\SecurityController::login
+
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+
+app_tableau_index:
+    path: /tableau
+    controller: App\Controller\TableauController::index
+
+app_ticket_new:
+    path: /tableau/newTicket/{id}
+    controller : App\Controller\TicketController::newTicket
+
+app_colonne_new:
+    path: /tableau/newColonne/{id}
+    controller : App\Controller\ColonneController::newColonne
+
+app_ticket_move:
+    path: /moveTicket
+    controller : App\Controller\TicketController::moveTicket
+
+app_colonne_move:
+    path: /moveColonne
+    controller : App\Controller\ColonneController::moveColonne
+
+app_ticket_edit:
+    path: /editTicket
+    controller : App\Controller\TicketController::edit
+
+app_ticket_delete:
+    path: /tableau/deleteTicket/{id}
+    controller : App\Controller\TicketController::delete
+
+app_ticket_test:
+    path: /test
+    controller : App\Controller\TicketController::access
+
+app_colonne_delete:
+    path: /tableau/deleteColonne/{id}
+    controller : App\Controller\ColonneController::delete
+
+app_comment_delete:
+    path: /tableau/deleteComment/{id}
+    controller : App\Controller\CommentController::delete

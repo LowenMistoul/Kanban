@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau index{% endblock %}
+
+{% block body %}    
+    </br>
+    </br>
+    <h1 style="margin-left:1rem;">Vos tableaux</h1>
+    </br>
+    </br>
+        {% if tableaus is not empty %}
+        <div style="text-align:center;width:100%;">
+            <a class="btn btn-primary" href="{{ path('app_tableau_new') }}">Créer un nouveau tableau</a>
+        </div>
+    {% endif %}
+     <input style="margin-left:1rem;margin-bottom:3rem;" id="myInputTableau" type="text" placeholder="Search..">
+    <div style="display:flex;">
+    <div id="grid" class="grids">
+        {% for tableau in tableaus %}
+            <div class="card" style="width: 18rem;">
+                <a style="text-decoration:none;align-items:center;" href="{{ path('app_tableau_show', {'id': tableau.id}) }}" class="stretched-link">
+                    {# <img src="{{ asset('assets/images/' ~ "images.png") }}" class="card-img-top" alt="..."> #}
+                    <svg style="margin-top:1rem;center;color:black;" xmlns="http://www.w3.org/2000/svg" width="250" height="250" fill="currentColor" class="card-img-top bi bi-table" viewBox="0 0 16 16">
+                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z"/>
+                    </svg>
+                    <hr/>
+                    <div class="card-body">
+                        <p style="text-align:center;color:black;">{{ tableau.name }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+    {% if tableaus is empty %}
+        <div style="width:100%;display:flex;">
+            <p colspan="3" style="color:grey;margin:0 auto;">Il n'existe aucun tableau pour l'instant <a href="{{ path('app_tableau_new') }}">cliquez ici<a/> pour en créer un maintenant !</p>
+        </div>
+    {% endif %}
+{% endblock %}
