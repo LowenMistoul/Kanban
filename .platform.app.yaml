@@ -19,17 +19,29 @@ dependencies:
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
 relationships:
-    database: 'mysql:mysql'
+    database: 'db:mysql'
 
 # The configuration of app when it is exposed to the web.
-web:
+#web:
     # The public directory of the app, relative to its root.
-    document_root: '/web'
+#    document_root: '/web'
     # The front-controller script to send non-static requests to.
-    passthru: '/app.php'
+#    passthru: '/app.php'
+
+web:
+    locations:
+        "/":
+            root: "public"
+            passthru: "/index.php"
 
 # The size of the persistent disk of the application (in MB).
 disk: 2048
+
+variables:
+    env:
+        # Tell Symfony to always install in production-mode.
+        APP_ENV: 'prod'
+        APP_DEBUG: 0
 
 # The mounts that will be performed when the package is deployed.
 mounts:
