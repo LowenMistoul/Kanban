@@ -36,5 +36,14 @@ mounts:
 
 # The hooks that will be performed when the package is deployed.
 hooks:
+    build: |
+        set -x -e
+
+        curl -s https://get.symfony.com/cloud/configurator | bash
+
+        symfony-build        
+
     deploy: |
-        php bin/console --env=prod cache:clear
+        set -x -e
+
+        symfony-deploy 
