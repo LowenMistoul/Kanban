@@ -22,18 +22,11 @@ relationships:
     database: 'mysql:mysql'
 
 # The configuration of app when it is exposed to the web.
-#web:
-    # The public directory of the app, relative to its root.
-#    document_root: '/web'
-    # The front-controller script to send non-static requests to.
-#    passthru: '/app.php'
-
 web:
-    locations:
-        "/":
-            root: "public"
-            expires: 1h
-            passthru: "/index.php"
+    # The public directory of the app, relative to its root.
+    document_root: '/web'
+    # The front-controller script to send non-static requests to.
+    passthru: '/app.php'
 
 # The size of the persistent disk of the application (in MB).
 disk: 2048
