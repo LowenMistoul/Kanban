@@ -95,11 +95,11 @@
                                             <div style="background-color:#ffffff; border:1px solid grey;border-radius:5%;padding:2%;margin-bottom:1rem;">
                                             {% set color , date = "black" , "now"|date('Y-m-d') %}
                                             {% if ticket.date|date('Y-m-d') > date|date('Y-m-d') %}
-                                                {% set color = "red" %}
+                                                {% set color = "green" %}
                                             {% elseif ticket.date|date('Y-m-d') > date|date_modify("-3day")|date('Y-m-d') %}
                                                 {% set color = "orange" %}
                                             {% elseif ticket.date|date('Y-m-d') < date|date_modify("-3day")|date('Y-m-d') %}
-                                                {% set color = "green" %}
+                                                {% set color = "red" %}
                                             {% endif %}
                                                 <p style="font-size:0.7rem;margin-bottom:-0.5rem;color:{{color }}">
                                                     {{ticket.date ? ticket.date|date('Y-m-d') : ""}}
