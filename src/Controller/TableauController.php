@@ -123,7 +123,6 @@ class TableauController extends AbstractController
 
                         return $this->render('tableau/show.html.twig', [
                             'tableaux'=>$tableaux,'tableau' => $tableau, 'colonnes'=> $colonnes, 'tickets' => $tickets, 'form'=>$form->createView(),'form2'=>$form2->createView(),
-                            'tableauOwner'=>$owners,
                         ]);
                     }else if ($form2->isSubmitted() && $form2->isValid()) {
                         $entityManager->persist($colonne);
@@ -131,14 +130,12 @@ class TableauController extends AbstractController
             
                         return $this->render('tableau/show.html.twig', [
                             'tableaux'=>$tableaux, 'tableau' => $tableau, 'colonnes'=> $colonnes, 'tickets' => $tickets, 'form'=>$form->createView(),'form2'=>$form2->createView(),
-                            'tableauOwner'=>$owners,
                         ]);
                     
                     }
                 
                 return $this->render('tableau/show.html.twig', [
                     'tableaux'=>$tableaux,'tableau' => $tableau, 'colonnes'=> $colonnes, 'tickets' => $tickets, 'form'=>$form->createView(),'form2'=>$form2->createView(),
-                    'tableauOwner'=>$owners,
             ]);
         }
         else {
