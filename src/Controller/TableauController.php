@@ -11,6 +11,7 @@ use App\Form\TableauType;
 use App\Form\ColonneType;
 use App\Form\TicketType;
 use App\Repository\TableauRepository;
+use App\Repository\UserRepository;
 use App\Repository\TicketRepository;
 use App\Repository\ColonneRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -175,6 +176,49 @@ class TableauController extends AbstractController
             return $this->redirectToRoute('app_tableau_index', [], Response::HTTP_SEE_OTHER);
         }
         else {
+            return $this->render('security/acces.html.twig');
+        }
+    }
+
+    #[Route('/{id}/addUser', name: 'app_tableau_add_user', methods: ['GET'])]
+    public function addUser(TableauRepository $tableauRepository,UserRepository $userRepository,$addedUser,Tableau $tableau): Response
+    {
+        $acces=false;
+        if($this->getUser()){ 
+            $user = $this->getUser();
+            $possible= $tableau->getOwner();
+            
+            foreach($possible as $owner){
+                if($user->getId()===$owner->getId()){
+                    $acces=true;
+                }else{
+                    $acces=false;
+                }
+            }
+        }else{
+            $acces=false;
+        }
+        if($acces){
+            $ajout = false;
+            $addedUserEmail = $request->request->get('addedUserEmail');
+            if($addedUser !=""){
+                $addedUser=$userRepository->findOneByEmail($addedUserEmail);
+                $owners= $tableau->getOwner();
+                if (!$owners->contains($addedUser)) {
+                    $tableau->addOwner($addedUser);
+                }
+            
+                // foreach($owners as $owner){
+                //     if($user->getId()===$owner->getId()){
+                //         $ajout=true;
+                //     }else{
+                //         $ajout=false;
+                //     }
+                // }
+                //$tableau->$tableauRepository->addUser($addedUser);
+            }
+            return $this->redirectToRoute('app_tableau_show', ['id'=>$tableau->getId()], Response::HTTP_SEE_OTHER);      
+        }else{
             return $this->render('security/acces.html.twig');
         }
     }
