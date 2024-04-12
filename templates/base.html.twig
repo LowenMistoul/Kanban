@@ -15,7 +15,9 @@
             $(document).ready(function(){
                 //add user
                 $('#addUser').submit(function(e){
-                    alert('good till now');
+                    var email = $(this).find('#newUser').val();
+                    var tableauId =$(".tableau").attr('id');
+                    alert('good till now'+email+""+tableauId);
                 });
 
                 //gestion du date picker
