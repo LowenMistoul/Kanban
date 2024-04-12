@@ -193,8 +193,6 @@ class TableauController extends AbstractController
             foreach($possible as $owner){
                 if($user->getId()===$owner->getId()){
                     $acces=true;
-                }else{
-                    $acces=false;
                 }
             }
         }else{
@@ -203,7 +201,7 @@ class TableauController extends AbstractController
         if($acces){
             $ajout = false;
             $addedUserEmail = $request->request->get('addedUserEmail');
-            //var_dump($addedUserEmail);
+            var_dump($addedUserEmail);
             if($addedUser !=""){
                 $tableauId = $request->request->get('tableauId');
                 $tableau = $tableauRepository->findOneById($tableauId);
@@ -223,7 +221,8 @@ class TableauController extends AbstractController
                 // }
                 //$tableau->$tableauRepository->addUser($addedUser);
             }
-            return $this->redirectToRoute('app_tableau_show', ['id'=>$tableauId], Response::HTTP_SEE_OTHER);      
+            //return $this->redirectToRoute('app_tableau_show', ['id'=>$tableauId], Response::HTTP_SEE_OTHER); 
+            return $this->render('security/acces.html.twig');     
         }else{
             return $this->render('security/acces.html.twig');
         }
