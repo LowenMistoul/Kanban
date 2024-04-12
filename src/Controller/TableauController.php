@@ -165,7 +165,7 @@ class TableauController extends AbstractController
 
 
     #[Route('/edit', name: 'app_tableau_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Tableau $tableau, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request,TableauRepository $tableauRepository, EntityManagerInterface $entityManager): Response
     {
         // $form = $this->createForm(TableauType::class, $comment);
         // $form->handleRequest($request);
