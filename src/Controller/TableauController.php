@@ -73,10 +73,10 @@ class TableauController extends AbstractController
     #[Route('/{id}', name: 'app_tableau_show', methods: ['GET'])]
     public function show(Request $request,TableauRepository $tableauRepository,UserRepository $userRepository,TicketRepository $ticketRepository,ColonneRepository $colonneRepository, Tableau $tableau): Response
     {
-        //Lowen ca bloque a cause de ces 5 lignes
+        //Lowen ca bloque a cause de ces 5-6 lignes
          $addedUserEmail ="shebeleza_1@yahoo.ca";
-         $addedUsers=$userRepository->findOneByEmail($addedUserEmail);
-         var_dump($addedUsers->getId());
+         //$addedUsers=$userRepository->findOneByEmail($addedUserEmail);
+         //var_dump($addedUsers->getId());
         // $tableau->addOwner($addedUser);
         //         $entityManager->persist($tableau);
         //         $entityManager->flush();
