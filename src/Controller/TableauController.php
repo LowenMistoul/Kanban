@@ -70,7 +70,7 @@ class TableauController extends AbstractController
         }
     }
 
-    #[Route('/{id}', name: 'app_tableau_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_tableau_show', methods: ['GET','POST'])]
     public function show(Request $request,TableauRepository $tableauRepository,UserRepository $userRepository,TicketRepository $ticketRepository,ColonneRepository $colonneRepository, Tableau $tableau): Response
     {
         //Lowen ca bloque a cause de ces 5-6 lignes
