@@ -47,8 +47,22 @@
                         </div>
                         <div class="modal-body">
                           <form id="addUser{{tableau.id}}">
-                            <input type="text" class="form-control name" id="nameTableau" value="{{tableau.name}}" name="name{{tableau.id}}">
-                             <input type="email" class="form-control name" id="address">
+                          <div class="row form-group">
+                                <div class="col-sm-2">
+                                    <label class="control-label" style="position:inline; top:7px;">nom tableau :</label>
+                                </div>
+                                 <div class="col-sm-10">
+                                     <input type="text" class="form-control name" id="nameTableau" value="{{tableau.name}}" name="name{{tableau.id}}">          
+                                </div>
+                          </div>
+                          <div class="row form-group">
+                                <div class="col-sm-2">
+                                    <label class="control-label" style="position:inline; top:7px;">adresse mail :</label>
+                                </div>
+                                 <div class="col-sm-10">
+                                     <input type="email" class="form-control name" id="address">          
+                                </div>
+                          </div>
                             {% for owner in tableau.owner %}
                                 <li style="display:flex;flex-direction:row;">
                                     <p style="float:left;">{{owner.username}}<p/>
