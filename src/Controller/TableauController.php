@@ -188,6 +188,7 @@ class TableauController extends AbstractController
             var_dump($nameTableau);
             var_dump($address);
             var_dump($tableauId);
+            $tableau->setName($nameTableau);
             //$addedUser=$userRepository->findOneByEmail($address);
             //$addedUser->addTableau($tableau);
 
