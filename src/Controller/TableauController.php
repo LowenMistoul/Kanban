@@ -77,9 +77,10 @@ class TableauController extends AbstractController
         if($this->getUser()){ 
             $user = $this->getUser();
             $possible= $tableau->getOwner();
+            var_dump($possible);
             
             foreach($possible as $owner){
-                if($user->getId()===$owner->getId()){
+                if($user->getId() === $owner->getId()){
                     $acces=true;
                 }
             }
