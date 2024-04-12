@@ -119,7 +119,7 @@
                     location.reload();
                 });
 
-                //edit tableau
+                //edit tableau ajouter user
                 $('.editTableau').submit(function(e){
                     var id = $(this).attr('id');
                     id=id.replace("voirTableauModal","");
@@ -136,6 +136,33 @@
                         dataType: 'json',
                         data: {nameTableau : nameTableau, 
                                 address: address,
+                                tableauId: tableauId },
+                        type: 'POST',
+                        success: function(data){
+                            alert(data);
+                            $('#monelement').html(data);
+                        }
+                    });
+                    location.reload();
+                });
+
+                //edit tableau retirer user
+                $('.remove').on("click", function() {
+                    var id = $(this).attr('id');
+                    id=id.replace("removeUser","");
+                    e.preventDefault();
+                    //var nameTableau = $(this).find("#nameTableau").val();
+                    //var address = $(this).find("#address").val();
+                    var tableauId =$(".tableau").attr('id');
+                    $(this).modal('hide');
+                    //alert(nameTableau);
+                    //alert(address);
+                    //alert(tableauId);
+                    $.ajax({
+                        url: "{{ path('app_tableau_edit') }}", // point to server-side PHP script
+                        dataType: 'json',
+                        data: { remove:true,
+                                id:id,
                                 tableauId: tableauId },
                         type: 'POST',
                         success: function(data){

@@ -156,27 +156,35 @@ class TableauController extends AbstractController
             $nameTableau = $request->request->get('nameTableau');
             $address = $request->request->get('address');
             $tableauId = $request->request->get('tableauId');
-            $tableau = $tableauRepository->findOneById($tableauId);
-            var_dump($nameTableau);
-            var_dump($address);
-            var_dump($tableauId);
-            $tableau->setName($nameTableau);
-            if($address && $address!=""){
-                $addedUser=$userRepository->findOneByEmail($address);
-                $addedUser->addTableau($tableau);
-
+            $remove = $request->request->get('remove');
+            $removeId = $request->request->get('id');
+            if($remove && $removeId && $remove=true ){
+                $tableau = $tableauRepository->findOneById($tableauId);
+                $addedUser=$userRepository->findOneById($removeId);
+                $addedUser->removeTableau($tableau);
                 $entityManager->persist($addedUser);
-            }
-            $entityManager->persist($tableau);
-            $entityManager->flush();
+                $entityManager->persist($tableau);
+                $entityManager->flush();
+            }else{
+                $tableau = $tableauRepository->findOneById($tableauId);
+                $tableau->setName($nameTableau);
+                if($address && $address!=""){
+                    $addedUser=$userRepository->findOneByEmail($address);
+                    $addedUser->addTableau($tableau);
+
+                    $entityManager->persist($addedUser);
+                }
+                $entityManager->persist($tableau);
+                $entityManager->flush();
+             }
+
+            $colonnes= $colonneRepository->findByTableauId($tableauId);
+            $tickets= $ticketRepository->findByTableauId($tableauId);
+            return $this->render('tableau/show.html.twig', [
+                'tableau' => $tableauRepository->findOneById($tableauId), 'colonnes'=> $colonnes, 'tickets' => $tickets,
+            ]);
+
         }
-
-        $colonnes= $colonneRepository->findByTableauId($tableauId);
-        $tickets= $ticketRepository->findByTableauId($tableauId);
-        return $this->render('tableau/show.html.twig', [
-            'tableau' => $tableauRepository->findOneById($tableauId), 'colonnes'=> $colonnes, 'tickets' => $tickets,
-        ]);
-
     }
 
     #[Route('/{id}', name: 'app_tableau_delete', methods: ['POST'])]
