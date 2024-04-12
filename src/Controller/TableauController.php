@@ -77,6 +77,8 @@ class TableauController extends AbstractController
         if($this->getUser()){ 
             $user = $this->getUser();
             $possible= $tableau->getOwner();
+            $addedUser=$userRepository->findOneByEmail('shebeleza_1@yahoo.ca');
+            var_dump($addedUser->getId());
             foreach($possible as $owner){
                 var_dump($owner->getId());
             }
@@ -201,17 +203,16 @@ class TableauController extends AbstractController
         if($acces){
             $ajout = false;
             $addedUserEmail = $request->request->get('addedUserEmail');
-            var_dump($addedUserEmail);
+            //var_dump($addedUserEmail);
             if($addedUser !=""){
                 $tableauId = $request->request->get('tableauId');
                 $tableau = $tableauRepository->findOneById($tableauId);
                 $addedUser=$userRepository->findOneByEmail($addedUserEmail);
                 $owners= $tableau->getOwner();
-                if (!$owners->contains($addedUser)) {
-                    $tableau->addOwner($addedUser);
-                    $entityManager->persist($tableau);
-                    $entityManager->flush();
-                }
+                
+                $tableau->addOwner($addedUser);
+                $entityManager->persist($tableau);
+                $entityManager->flush();
             
                 // foreach($owners as $owner){
                 //     if($user->getId()===$owner->getId()){
