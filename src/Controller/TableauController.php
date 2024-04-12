@@ -78,7 +78,7 @@ class TableauController extends AbstractController
             $user = $this->getUser();
             $possible= $tableau->getOwner();
             $addedUser=$userRepository->findOneByEmail('shebeleza_1@yahoo.ca');
-            var_dump($addedUser->getEmail());
+            var_dump($addedUser->getId());
             foreach($possible as $owner){
                 var_dump($owner->getId());
             }
@@ -182,7 +182,7 @@ class TableauController extends AbstractController
         }
     }
 
-    #[Route('/addUser', name: 'app_tableau_add_user', methods: ['GET','POST'])]
+    #[Route('tableau/addUser', name: 'app_tableau_add_user', methods: ['POST'])]
     public function addUser(Request $request,TableauRepository $tableauRepository,UserRepository $userRepository,EntityManagerInterface $entityManager,Tableau $tableau): Response
     {
         $acces=false;

@@ -53,3 +53,9 @@ app_colonne_delete:
 app_comment_delete:
     path: /tableau/deleteComment/{id}
     controller : App\Controller\CommentController::delete
+
+app_tableau_add_user:
+    path: /tableau/addUser
+    controller : App\Controller\TableauController::addUser
+
+    
