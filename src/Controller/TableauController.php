@@ -165,7 +165,7 @@ class TableauController extends AbstractController
 
 
     #[Route('/editTableau', name: 'app_tableau_edit', methods: ['POST'])]
-    public function editTableau(Request $request,TableauRepository $tableauRepository, EntityManagerInterface $entityManager): Response
+    public function editTableau(Request $request,TableauRepository $tableauRepository,UserRepository $userRepository, EntityManagerInterface $entityManager): Response
     {
         // $form = $this->createForm(TableauType::class, $comment);
         // $form->handleRequest($request);
@@ -192,12 +192,12 @@ class TableauController extends AbstractController
             $addedUser=$userRepository->findOneByEmail($address);
             $addedUser->addTableau($tableau);
 
-            $entityManager->persist($addedUser);
+            //$entityManager->persist($addedUser);
             $entityManager->persist($tableau);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_tableau_show', ['id' => $id], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_tableau_show', ['id' => $tableauId], Response::HTTP_SEE_OTHER);
 
     }
 
