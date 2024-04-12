@@ -140,19 +140,19 @@ class TableauController extends AbstractController
                 ]);
             
             }
-            $addedUserEmail ="shebeleza_1@yahoo.ca"; //$request->request->get('email');
-            var_dump($addedUserEmail);
-            if($addedUserEmail && $addedUserEmail!=""){
-                $addedUser=$userRepository->findOneByEmail($addedUserEmail);
-                $addedUser->addTableau($tableau);
-                var_dump($addedUser->getId());
-                //$entityManager->persist($tableau);
-                $entityManager->persist($addedUser);
-                $entityManager->flush();
-            }
-            foreach($possible as $owner){
-                var_dump($owner->getId());
-            }
+            // $addedUserEmail ="shebeleza_1@yahoo.ca"; //$request->request->get('email');
+            // var_dump($addedUserEmail);
+            // if($addedUserEmail && $addedUserEmail!=""){
+            //     $addedUser=$userRepository->findOneByEmail($addedUserEmail);
+            //     $addedUser->addTableau($tableau);
+            //     var_dump($addedUser->getId());
+            //     //$entityManager->persist($tableau);
+            //     //$entityManager->persist($addedUser);
+            //     //$entityManager->flush();
+            // }
+            // foreach($possible as $owner){
+            //     var_dump($owner->getId());
+            // }
                 
             return $this->render('tableau/show.html.twig', [
                 'tableaux'=>$tableaux,'tableau' => $tableau, 'colonnes'=> $colonnes, 'tickets' => $tickets, 'form'=>$form->createView(),'form2'=>$form2->createView(),
@@ -167,7 +167,20 @@ class TableauController extends AbstractController
     #[Route('/{id}/edit', name: 'app_tableau_edit', methods: ['GET', 'POST'])]
     public function edit($id,Request $request, Tableau $tableau, EntityManagerInterface $entityManager): Response
     {
-        return $this->redirectToRoute('app_tableau_show', ['id'=>$id], Response::HTTP_SEE_OTHER);
+        $form = $this->createForm(TableauType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_tableau_show', ['id'=>$id], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('tableau/edit.html.twig', [
+            'tableau' => $tableau,
+            'form' => $form,
+        ]);
+        
     }
 
     #[Route('/{id}', name: 'app_tableau_delete', methods: ['POST'])]
