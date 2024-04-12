@@ -21,7 +21,7 @@
                      $.ajax({
                         url: "{{ path('app_tableau_add_user') }}", // point to server-side PHP script
                         dataType: 'json',
-                        data: {addedUserEmail : email, 
+                        data: {email : email, 
                                 tableauId: tableauId,
                                 },
                         type: 'POST',

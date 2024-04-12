@@ -200,7 +200,7 @@ class TableauController extends AbstractController
         }
         if($acces){
             $ajout = false;
-            $addedUserEmail = $request->request->get('addedUserEmail');
+            $addedUserEmail = $request->request->get('email');
             var_dump($addedUserEmail);
             if($addedUserEmail !=""){
                 $tableauId = $request->request->get('tableauId');
