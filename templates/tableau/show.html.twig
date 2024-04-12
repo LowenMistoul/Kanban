@@ -33,12 +33,12 @@
                     </svg>
                 </button>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#voirTableauModal{{tableau.id}}">
                     Modifier tableau
                 </button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade editTableau" id="voirTableauModal{{tableau.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                         <div class="modal-header">
@@ -46,6 +46,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                          <form id="addUser{{tableau.id}}">
+                            <input type="text" class="form-control name" id="nameTableau" value="{{tableau.name}}" name="name{{tableau.id}}">
+                             <input type="email" class="form-control name" id="adress">
+                          </form>
                             {% for owner in tableau.owner %}
                                 <li style="display:flex;flex-direction:row;">
                                 <form id="removeUser">

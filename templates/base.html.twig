@@ -136,6 +136,33 @@
                         }
                     });
                     location.reload();
+                });
+
+                //edit tableau
+                $('.editTableau').submit(function(e){
+                    var id = $(this).attr('id');
+                    id=id.replace("voirTableauModal","");
+                    e.preventDefault();
+                    var nameTableau = $(this).find("#nameTableau").val();
+                    var address = $(this).find("#address").val();
+                    var tableauId =$(".tableau").attr('id');
+                    $(this).modal('hide');
+                    alert(nameTableau);
+                    alert(address);
+                    alert(tableauId);
+                    /*$.ajax({
+                        url: "{{ path('app_colonne_edit') }}", // point to server-side PHP script
+                        dataType: 'json',
+                        data: {nameColonne : nameColonne, 
+                                colonneId: id,
+                                tableauId: tableauId },
+                        type: 'POST',
+                        success: function(data){
+                            alert(data);
+                            $('#monelement').html(data);
+                        }
+                    });*/
+                    //location.reload();
                 })
 
                 //control du offbar
