@@ -18,6 +18,19 @@
                     var email = $(this).find('#newUser').val();
                     var tableauId =$(".tableau").attr('id');
                     alert('good till now'+email+""+tableauId);
+                     $.ajax({
+                        url: "{{ path('app_tableau_add_user') }}", // point to server-side PHP script
+                        dataType: 'json',
+                        data: {addedUserEmail : email, 
+                                tableauId: tableauId,
+                                },
+                        type: 'POST',
+                        success: function(data){
+                            alert(data);
+                            $('#monelement').html(data);
+                        }
+                    });
+                    location.reload();
                 });
 
                 //gestion du date picker

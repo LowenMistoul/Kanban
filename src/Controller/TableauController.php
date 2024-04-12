@@ -181,8 +181,8 @@ class TableauController extends AbstractController
         }
     }
 
-    #[Route('/{id}/addUser', name: 'app_tableau_add_user', methods: ['GET'])]
-    public function addUser(TableauRepository $tableauRepository,UserRepository $userRepository,$addedUser,Tableau $tableau): Response
+    #[Route('/addUser', name: 'app_tableau_add_user', methods: ['GET','POST'])]
+    public function addUser(Request $request,TableauRepository $tableauRepository,UserRepository $userRepository,$addedUser,EntityManagerInterface $entityManager,Tableau $tableau): Response
     {
         $acces=false;
         if($this->getUser()){ 
@@ -203,10 +203,14 @@ class TableauController extends AbstractController
             $ajout = false;
             $addedUserEmail = $request->request->get('addedUserEmail');
             if($addedUser !=""){
+                $tableauId = $request->request->get('tableauId');
+                $tableau = $tableauRepository->findOneById($tableauId);
                 $addedUser=$userRepository->findOneByEmail($addedUserEmail);
                 $owners= $tableau->getOwner();
                 if (!$owners->contains($addedUser)) {
                     $tableau->addOwner($addedUser);
+                    $entityManager->persist($tableau);
+                    $entityManager->flush();
                 }
             
                 // foreach($owners as $owner){
@@ -218,7 +222,7 @@ class TableauController extends AbstractController
                 // }
                 //$tableau->$tableauRepository->addUser($addedUser);
             }
-            return $this->redirectToRoute('app_tableau_show', ['id'=>$tableau->getId()], Response::HTTP_SEE_OTHER);      
+            return $this->redirectToRoute('app_tableau_show', ['id'=>$tableauId], Response::HTTP_SEE_OTHER);      
         }else{
             return $this->render('security/acces.html.twig');
         }
