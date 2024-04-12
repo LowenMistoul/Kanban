@@ -185,6 +185,9 @@ class TableauController extends AbstractController
             $address = $request->request->get('address');
             $tableauId = $request->request->get('tableauId');
             $tableau = $tableauRepository->findOneById($tableauId);
+            var_dump($nameTableau);
+            var_dump($address);
+            var_dump($tableauId);
             //$addedUser=$userRepository->findOneByEmail($address);
             //$addedUser->addTableau($tableau);
 
