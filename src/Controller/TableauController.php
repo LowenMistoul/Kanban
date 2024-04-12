@@ -85,20 +85,6 @@ class TableauController extends AbstractController
         if($this->getUser()){ 
             $user = $this->getUser();
             $possible= $tableau->getOwner();
-            $addedUserEmail ="shebeleza_1@yahoo.ca"; //$request->request->get('email');
-            var_dump($addedUserEmail);
-            if($addedUserEmail && $addedUserEmail!=""){
-                $addedUser=$userRepository->findOneByEmail($addedUserEmail);
-                $tableau->addOwner($addedUser);
-                var_dump($addedUser->getId());
-                //$entityManager->persist($tableau);
-                //$entityManager->persist($addedUser);
-                //$entityManager->flush();
-            }
-            foreach($possible as $owner){
-                var_dump($owner->getId());
-            }
-            
             foreach($possible as $owner){
                 if($user->getId() === $owner->getId()){
                     $acces=true;
@@ -135,27 +121,41 @@ class TableauController extends AbstractController
             if(count($colonnes)>0){
                     $ticket->setColonne($colonnes[0]);
             }
-                    if ($form->isSubmitted() && $form->isValid()) {
-                        $entityManager->persist($newComment);
-                        $entityManager->persist($ticket);
-                        //$entityManager->persist($tableau);
-                        $entityManager->flush();
 
-                        return $this->render('tableau/show.html.twig', [
-                            'tableaux'=>$tableaux,'tableau' => $tableau, 'colonnes'=> $colonnes, 'tickets' => $tickets, 'form'=>$form->createView(),'form2'=>$form2->createView(),
-                        ]);
-                    }else if ($form2->isSubmitted() && $form2->isValid()) {
-                        $entityManager->persist($colonne);
-                        $entityManager->flush();
-            
-                        return $this->render('tableau/show.html.twig', [
-                            'tableaux'=>$tableaux, 'tableau' => $tableau, 'colonnes'=> $colonnes, 'tickets' => $tickets, 'form'=>$form->createView(),'form2'=>$form2->createView(),
-                        ]);
-                    
-                    }
-                
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager->persist($newComment);
+                $entityManager->persist($ticket);
+                //$entityManager->persist($tableau);
+                $entityManager->flush();
+
                 return $this->render('tableau/show.html.twig', [
                     'tableaux'=>$tableaux,'tableau' => $tableau, 'colonnes'=> $colonnes, 'tickets' => $tickets, 'form'=>$form->createView(),'form2'=>$form2->createView(),
+                ]);
+            }else if ($form2->isSubmitted() && $form2->isValid()) {
+                $entityManager->persist($colonne);
+                $entityManager->flush();
+    
+                return $this->render('tableau/show.html.twig', [
+                    'tableaux'=>$tableaux, 'tableau' => $tableau, 'colonnes'=> $colonnes, 'tickets' => $tickets, 'form'=>$form->createView(),'form2'=>$form2->createView(),
+                ]);
+            
+            }
+            $addedUserEmail ="shebeleza_1@yahoo.ca"; //$request->request->get('email');
+            var_dump($addedUserEmail);
+            if($addedUserEmail && $addedUserEmail!=""){
+                $addedUser=$userRepository->findOneByEmail($addedUserEmail);
+                $tableau->addOwner($addedUser);
+                var_dump($addedUser->getId());
+                $entityManager->persist($tableau);
+                $entityManager->persist($addedUser);
+                $entityManager->flush();
+            }
+            foreach($possible as $owner){
+                var_dump($owner->getId());
+            }
+                
+            return $this->render('tableau/show.html.twig', [
+                'tableaux'=>$tableaux,'tableau' => $tableau, 'colonnes'=> $colonnes, 'tickets' => $tickets, 'form'=>$form->createView(),'form2'=>$form2->createView(),
             ]);
         }
         else {
