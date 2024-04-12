@@ -131,7 +131,7 @@ class TableauController extends AbstractController
                     if ($form->isSubmitted() && $form->isValid()) {
                         $entityManager->persist($newComment);
                         $entityManager->persist($ticket);
-                        $entityManager->persist($tableau);
+                        //$entityManager->persist($tableau);
                         $entityManager->flush();
 
                         return $this->render('tableau/show.html.twig', [
@@ -220,6 +220,7 @@ class TableauController extends AbstractController
                 
                 $tableau->addOwner($addedUser);
                 $entityManager->persist($tableau);
+                $entityManager->persist($addedUser);
                 $entityManager->flush();
             
                 // foreach($owners as $owner){
@@ -231,8 +232,8 @@ class TableauController extends AbstractController
                 // }
                 //$tableau->$tableauRepository->addUser($addedUser);
             }
-            //return $this->redirectToRoute('app_tableau_show', ['id'=>$tableauId], Response::HTTP_SEE_OTHER); 
-            return $this->render('security/acces.html.twig');     
+            return $this->redirectToRoute('app_tableau_show', ['id'=>$tableauId], Response::HTTP_SEE_OTHER); 
+            //return $this->render('security/acces.html.twig');     
         }else{
             return $this->render('security/acces.html.twig');
         }
