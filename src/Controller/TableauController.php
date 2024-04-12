@@ -74,8 +74,9 @@ class TableauController extends AbstractController
     public function show(Request $request,TableauRepository $tableauRepository,UserRepository $userRepository,TicketRepository $ticketRepository,ColonneRepository $colonneRepository, Tableau $tableau): Response
     {
         //Lowen ca bloque a cause de ces 5 lignes
-        // $addedUserEmail ="shebeleza_1@yahoo.ca";
-        // $addedUser=$userRepository->findOneByEmail($addedUserEmail);
+         $addedUserEmail ="shebeleza_1@yahoo.ca";
+         $addedUsers=$userRepository->findOneByEmail($addedUserEmail);
+         var_dump($addedUsers->getId());
         // $tableau->addOwner($addedUser);
         //         $entityManager->persist($tableau);
         //         $entityManager->flush();
