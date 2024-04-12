@@ -85,9 +85,15 @@ class TableauController extends AbstractController
         if($this->getUser()){ 
             $user = $this->getUser();
             $possible= $tableau->getOwner();
-            //$addedUser=$userRepository->findOneByEmail('shebeleza_1@yahoo.ca');
-            //$tableau->addOwner($addedUser);
-            //var_dump($addedUser->getId());
+            $addedUserEmail = $request->request->get('email');
+            if($addedUserEmail && $addedUserEmail!=""){
+                $addedUser=$userRepository->findOneByEmail($addedUserEmail);
+                $tableau->addOwner($addedUser);
+                var_dump($addedUser->getId());
+                $entityManager->persist($tableau);
+                $entityManager->persist($addedUser);
+                $entityManager->flush();
+            }
             foreach($possible as $owner){
                 var_dump($owner->getId());
             }
@@ -192,50 +198,50 @@ class TableauController extends AbstractController
         }
     }
 
-    #[Route('tableau/addUser', name: 'app_tableau_add_user', methods: ['POST'])]
-    public function addUser(Request $request,TableauRepository $tableauRepository,UserRepository $userRepository,EntityManagerInterface $entityManager,Tableau $tableau): Response
-    {
-        $acces=false;
-        if($this->getUser()){ 
-            $user = $this->getUser();
-            $possible= $tableau->getOwner();
+    // #[Route('tableau/addUser', name: 'app_tableau_add_user', methods: ['POST'])]
+    // public function addUser(Request $request,TableauRepository $tableauRepository,UserRepository $userRepository,EntityManagerInterface $entityManager,Tableau $tableau): Response
+    // {
+    //     $acces=false;
+    //     if($this->getUser()){ 
+    //         $user = $this->getUser();
+    //         $possible= $tableau->getOwner();
             
-            foreach($possible as $owner){
-                if($user->getId()===$owner->getId()){
-                    $acces=true;
-                }
-            }
-        }else{
-            $acces=false;
-        }
-        if($acces){
-            $ajout = false;
-            $addedUserEmail = $request->request->get('email');
-            var_dump($addedUserEmail);
-            if(!$addedUserEmail && $addedUserEmail !=""){
-                $tableauId = $request->request->get('tableauId');
-                $tableau = $tableauRepository->findOneById($tableauId);
-                $addedUser=$userRepository->findOneByEmail($addedUserEmail);
-                $owners= $tableau->getOwner();
+    //         foreach($possible as $owner){
+    //             if($user->getId()===$owner->getId()){
+    //                 $acces=true;
+    //             }
+    //         }
+    //     }else{
+    //         $acces=false;
+    //     }
+    //     if($acces){
+    //         $ajout = false;
+    //         $addedUserEmail = $request->request->get('email');
+    //         var_dump($addedUserEmail);
+    //         if(!$addedUserEmail && $addedUserEmail !=""){
+    //             $tableauId = $request->request->get('tableauId');
+    //             $tableau = $tableauRepository->findOneById($tableauId);
+    //             $addedUser=$userRepository->findOneByEmail($addedUserEmail);
+    //             $owners= $tableau->getOwner();
                 
-                $tableau->addOwner($addedUser);
-                $entityManager->persist($tableau);
-                $entityManager->persist($addedUser);
-                $entityManager->flush();
+    //             $tableau->addOwner($addedUser);
+    //             $entityManager->persist($tableau);
+    //             $entityManager->persist($addedUser);
+    //             $entityManager->flush();
             
-                // foreach($owners as $owner){
-                //     if($user->getId()===$owner->getId()){
-                //         $ajout=true;
-                //     }else{
-                //         $ajout=false;
-                //     }
-                // }
-                //$tableau->$tableauRepository->addUser($addedUser);
-            }
-            return $this->redirectToRoute('app_tableau_show', ['id'=>$tableauId], Response::HTTP_SEE_OTHER); 
-            //return $this->render('security/acces.html.twig');     
-        }else{
-            return $this->render('security/acces.html.twig');
-        }
-    }
+    //             // foreach($owners as $owner){
+    //             //     if($user->getId()===$owner->getId()){
+    //             //         $ajout=true;
+    //             //     }else{
+    //             //         $ajout=false;
+    //             //     }
+    //             // }
+    //             //$tableau->$tableauRepository->addUser($addedUser);
+    //         }
+    //         return $this->redirectToRoute('app_tableau_show', ['id'=>$tableauId], Response::HTTP_SEE_OTHER); 
+    //         //return $this->render('security/acces.html.twig');     
+    //     }else{
+    //         return $this->render('security/acces.html.twig');
+    //     }
+    // }
 }

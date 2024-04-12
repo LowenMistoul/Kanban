@@ -19,7 +19,7 @@
                     var tableauId =$(".tableau").attr('id');
                     alert('good till now'+email+""+tableauId);
                      $.ajax({
-                        url: "{{ path('app_tableau_add_user') }}", // point to server-side PHP script
+                        url: "{{path('app_tableau_show',{'id':"+tableauId+"})}}", // point to server-side PHP script
                         dataType: 'json',
                         data: {email : email, 
                                 tableauId: tableauId,
