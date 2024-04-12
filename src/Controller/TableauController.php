@@ -146,7 +146,7 @@ class TableauController extends AbstractController
                 $addedUser=$userRepository->findOneByEmail($addedUserEmail);
                 $tableau->addOwner($addedUser);
                 var_dump($addedUser->getId());
-                //$entityManager->persist($tableau);
+                $entityManager->persist($tableau);
                 //$entityManager->persist($addedUser);
                 //$entityManager->flush();
             }
