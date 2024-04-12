@@ -183,7 +183,7 @@ class TableauController extends AbstractController
     }
 
     #[Route('/addUser', name: 'app_tableau_add_user', methods: ['GET','POST'])]
-    public function addUser(Request $request,TableauRepository $tableauRepository,UserRepository $userRepository,$addedUser,EntityManagerInterface $entityManager,Tableau $tableau): Response
+    public function addUser(Request $request,TableauRepository $tableauRepository,UserRepository $userRepository,EntityManagerInterface $entityManager,Tableau $tableau): Response
     {
         $acces=false;
         if($this->getUser()){ 
