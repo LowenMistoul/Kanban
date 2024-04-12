@@ -81,8 +81,6 @@ class TableauController extends AbstractController
             foreach($possible as $owner){
                 if($user->getId()===$owner->getId()){
                     $acces=true;
-                }else{
-                    $acces=false;
                 }
             }
         }else{
@@ -161,8 +159,6 @@ class TableauController extends AbstractController
             foreach($possible as $owner){
                 if($user->getId()===$owner->getId()){
                     $acces=true;
-                }else{
-                    $acces=false;
                 }
             }
         }else{
