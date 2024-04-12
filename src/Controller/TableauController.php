@@ -86,6 +86,7 @@ class TableauController extends AbstractController
             $user = $this->getUser();
             $possible= $tableau->getOwner();
             $addedUserEmail = $request->request->get('email');
+            var_dump($addedUserEmail);
             if($addedUserEmail && $addedUserEmail!=""){
                 $addedUser=$userRepository->findOneByEmail($addedUserEmail);
                 $tableau->addOwner($addedUser);
