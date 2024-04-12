@@ -93,7 +93,7 @@ class TableauController extends AbstractController
                 var_dump($addedUser->getId());
                 $entityManager->persist($tableau);
                 //$entityManager->persist($addedUser);
-                $entityManager->flush();
+                //$entityManager->flush();
             }
             foreach($possible as $owner){
                 var_dump($owner->getId());
