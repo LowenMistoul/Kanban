@@ -164,23 +164,37 @@ class TableauController extends AbstractController
     }
 
 
-    #[Route('/{id}/edit', name: 'app_tableau_edit', methods: ['GET', 'POST'])]
-    public function edit($id,Request $request, Tableau $tableau, EntityManagerInterface $entityManager): Response
+    #[Route('/edit', name: 'app_tableau_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Tableau $tableau, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(TableauType::class, $comment);
-        $form->handleRequest($request);
+        // $form = $this->createForm(TableauType::class, $comment);
+        // $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $entityManager->flush();
+
+        //     return $this->redirectToRoute('app_tableau_show', ['id'=>$id], Response::HTTP_SEE_OTHER);
+        // }
+
+        // return $this->renderForm('tableau/edit.html.twig', [
+        //     'tableau' => $tableau,
+        //     'form' => $form,
+        // ]);
+        if($request->isXmlHttpRequest()){
+            $nameTableau = $request->request->get('nameTableau');
+            $address = $request->request->get('address');
+            $tableauId = $request->request->get('tableauId');
+            $tableau = $tableauRepository->findOneById($tableauId);
+            $addedUser=$userRepository->findOneByEmail($address);
+            $addedUser->addTableau($tableau);
+
+            $entityManager->persist($addedUser);
+            $entityManager->persist($tableau);
             $entityManager->flush();
-
-            return $this->redirectToRoute('app_tableau_show', ['id'=>$id], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('tableau/edit.html.twig', [
-            'tableau' => $tableau,
-            'form' => $form,
-        ]);
-        
+        return $this->redirectToRoute('app_tableau_show', ['id' => $id], Response::HTTP_SEE_OTHER);
+
     }
 
     #[Route('/{id}', name: 'app_tableau_delete', methods: ['POST'])]

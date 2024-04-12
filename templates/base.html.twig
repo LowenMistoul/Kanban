@@ -147,22 +147,22 @@
                     var address = $(this).find("#address").val();
                     var tableauId =$(".tableau").attr('id');
                     $(this).modal('hide');
-                    alert(nameTableau);
-                    alert(address);
-                    alert(tableauId);
-                    /*$.ajax({
-                        url: "{{ path('app_colonne_edit') }}", // point to server-side PHP script
+                    //alert(nameTableau);
+                    //alert(address);
+                    //alert(tableauId);
+                    $.ajax({
+                        url: "{{ path('app_tableau_edit') }}", // point to server-side PHP script
                         dataType: 'json',
-                        data: {nameColonne : nameColonne, 
-                                colonneId: id,
+                        data: {nameTableau : nameTableau, 
+                                address: address,
                                 tableauId: tableauId },
                         type: 'POST',
                         success: function(data){
                             alert(data);
                             $('#monelement').html(data);
                         }
-                    });*/
-                    //location.reload();
+                    });
+                    location.reload();
                 })
 
                 //control du offbar

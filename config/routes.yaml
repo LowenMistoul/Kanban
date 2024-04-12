@@ -58,4 +58,6 @@ app_tableau_add_user:
     path: /tableau/addUser
     controller : App\Controller\TableauController::addUser
 
-    
+app_tableau_edit:
+    path: /edit
+    controller : App\Controller\TableauController::edit
