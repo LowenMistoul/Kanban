@@ -48,7 +48,7 @@
                         <div class="modal-body">
                           <form id="addUser{{tableau.id}}">
                             <input type="text" class="form-control name" id="nameTableau" value="{{tableau.name}}" name="name{{tableau.id}}">
-                             <input type="email" class="form-control name" id="adress">
+                             <input type="email" class="form-control name" id="address">
                             {% for owner in tableau.owner %}
                                 <li style="display:flex;flex-direction:row;">
                                     <p style="float:left;">{{owner.username}}<p/>
@@ -59,7 +59,6 @@
                                 </li>
                             {% endfor %}
                             </div>
-                            
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Save changes</button>
