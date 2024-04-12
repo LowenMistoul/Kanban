@@ -85,9 +85,9 @@ class TableauController extends AbstractController
         if($this->getUser()){ 
             $user = $this->getUser();
             $possible= $tableau->getOwner();
-            $addedUser=$userRepository->findOneByEmail('shebeleza_1@yahoo.ca');
-            $tableau->addOwner($addedUser);
-            var_dump($addedUser->getId());
+            //$addedUser=$userRepository->findOneByEmail('shebeleza_1@yahoo.ca');
+            //$tableau->addOwner($addedUser);
+            //var_dump($addedUser->getId());
             foreach($possible as $owner){
                 var_dump($owner->getId());
             }
