@@ -71,7 +71,7 @@ class TableauController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_tableau_show', methods: ['GET'])]
-    public function show(Request $request,TableauRepository $tableauRepository,TicketRepository $ticketRepository,ColonneRepository $colonneRepository, Tableau $tableau): Response
+    public function show(Request $request,TableauRepository $tableauRepository,UserRepository $userRepository,TicketRepository $ticketRepository,ColonneRepository $colonneRepository, Tableau $tableau): Response
     {
         $acces=false;
         if($this->getUser()){ 
