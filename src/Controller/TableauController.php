@@ -205,7 +205,9 @@ class TableauController extends AbstractController
             //return $this->redirectToRoute('app_tableau_show', ['id' => $tableauId], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->redirectToRoute('app_tableau_show', ['id' => $tableauId], Response::HTTP_SEE_OTHER);
+        return $this->render('tableau/show.html.twig', [
+            'tableau' => $tableauRepository->findOneById($tableauId), 'colonnes'=> $colonnes, 'tickets' => $tickets,
+        ]);
 
     }
 
