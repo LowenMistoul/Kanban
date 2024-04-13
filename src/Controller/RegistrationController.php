@@ -48,7 +48,7 @@ class RegistrationController extends AbstractController
         );
     }
 
-        /**
+    /**
      * @Route("/update", name="user_update")
      */
     public function update(Request $request, UserPasswordHasherInterface $passwordEncoder,EntityManagerInterface $manager)
