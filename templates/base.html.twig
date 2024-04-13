@@ -150,6 +150,11 @@
                 $('.remove').on( "click" , function() {
                     var id = $(this).attr('id');
                     id=id.replace("removeUser","");
+                    if({{app.user.id}} == id){
+                        alert("ok");
+                    }else{
+                        alert("not ok");
+                    }
                     //e.preventDefault();
                     //var nameTableau = $(this).find("#nameTableau").val();
                     //var address = $(this).find("#address").val();
