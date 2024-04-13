@@ -300,9 +300,9 @@
                     </div>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    {# {% if app.user %}
+                    {% if app.user %}
                         <a class=" btn btn-primary" href="/updateUser">Profile</a>
-                    {% endif %} #}
+                    {% endif %}
                     {% if not app.user %}
                         <a class=" btn btn-success" href="/">Connexion</a>
                     {% endif %}
