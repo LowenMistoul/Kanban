@@ -148,34 +148,38 @@
 
                 //edit tableau retirer user
                 $('.remove').on( "click" , function() {
+                    var confirmer = false;
                     var id = $(this).attr('id');
                     id=id.replace("removeUser","");
                     if({{app.user.id}} == id){
-                        confirm('Êtes vous sur de vouloir quitter ce tableau?');
+                        if(confirm('Êtes vous sur de vouloir quitter ce tableau?')==true){
+                            confirmer = true;
+                        }
                     }else{
-                        confirm('Êtes vous sur de vouloir retirer cet utilisateur de ce tableau?');
+                        if(confirm('Êtes vous sur de vouloir retirer cet utilisateur de ce tableau?')==true){
+                            confirmer = true;
+                        }
                     }
-                    //e.preventDefault();
-                    //var nameTableau = $(this).find("#nameTableau").val();
-                    //var address = $(this).find("#address").val();
                     var tableauId =$(".tableau").attr('id');
                     $(this).modal('hide');
                     //alert(nameTableau);
                     //alert(address);
                     //alert(tableauId);
-                    $.ajax({
-                        url: "{{ path('app_tableau_edit') }}", // point to server-side PHP script
-                        dataType: 'json',
-                        data: { remove:true,
-                                id:id,
-                                tableauId: tableauId },
-                        type: 'POST',
-                        success: function(data){
-                            alert(data);
-                            $('#monelement').html(data);
-                        }
-                    });
-                    location.reload();
+                    if(confirmer == true){
+                        $.ajax({
+                            url: "{{ path('app_tableau_edit') }}", // point to server-side PHP script
+                            dataType: 'json',
+                            data: { remove:true,
+                                    id:id,
+                                    tableauId: tableauId },
+                            type: 'POST',
+                            success: function(data){
+                                alert(data);
+                                $('#monelement').html(data);
+                            }
+                        });
+                        location.reload();
+                    }
                 });
 
                 //control du offbar
