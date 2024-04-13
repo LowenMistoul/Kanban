@@ -54,7 +54,7 @@ class RegistrationController extends AbstractController
     public function update(Request $request, UserPasswordHasherInterface $passwordEncoder,EntityManagerInterface $manager)
     {
         // 1) build the form
-        $user = $this->getuser();
+        $user = $this->getUser();
         $form = $this->createForm(UpdateType::class, $user);
 
         // 2) handle the submit (will only happen on POST)
