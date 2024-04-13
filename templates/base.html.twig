@@ -151,9 +151,9 @@
                     var id = $(this).attr('id');
                     id=id.replace("removeUser","");
                     if({{app.user.id}} == id){
-                        alert("ok");
+                        confirm('Êtes vous sur de vouloir quitter ce tableau?');
                     }else{
-                        alert("not ok");
+                        confirm('Êtes vous sur de vouloir retirer cet utilisateur de ce tableau?');
                     }
                     //e.preventDefault();
                     //var nameTableau = $(this).find("#nameTableau").val();
