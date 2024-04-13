@@ -2,9 +2,13 @@ controllers:
     resource: ../src/Controller/
     type: attribute
 
-user_registration:
-    path: /register
+user_update:
+    path: /updateUser
     controller: App\Controller\RegistrationController::register
+
+user_registration:
+    path: /updateUser
+    controller: App\Controller\RegistrationController::updateUser
 
 app_login:
     path: /
