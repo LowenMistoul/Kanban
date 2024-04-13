@@ -12,7 +12,7 @@
         {{ form_row(form.email) }}
         <br/>
         {% if app.user %}
-        <button class="btn btn-primary" id="mdp">Changer de mot de passe</button>
+        <p class="btn btn-primary" id="mdp">Changer de mot de passe</p>
         <div id="divmdp" style="display:none;">
         {% endif %}
             {{ form_row(form.password.first) }}
