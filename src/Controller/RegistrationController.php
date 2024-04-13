@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\UserRepository;
 
 class RegistrationController extends AbstractController
 {
@@ -51,10 +50,10 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/update", name="user_update")
      */
-    public function update(Request $request,UserRepository $userRepository, UserPasswordHasherInterface $passwordEncoder,EntityManagerInterface $manager)
+    public function update(Request $request, UserPasswordHasherInterface $passwordEncoder,EntityManagerInterface $manager)
     {
         // 1) build the form
-        $user = $userRepository->findOneByEmail("shebeleza_1@yahoo.ca");//$this->getUser();
+        $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
 
         // 2) handle the submit (will only happen on POST)

@@ -13,7 +13,7 @@
         <br/>
         {% if app.user %}
         <button class="btn btn-primary" id="mdp">Changer de mot de passe</button>
-        <div id="divmdp">
+        <div id="divmdp" style="display:none;">
         {% endif %}
             {{ form_row(form.password.first) }}
             <br/>
