@@ -34,3 +34,26 @@ class UserType extends AbstractType
         ]);
     }
 }
+
+class UpdateUserType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('userName')
+            ->add('email',EmailType::class)
+            // ->add('password', RepeatedType::class, array(
+            //     'type' => PasswordType::class,
+            //     'first_options'  => array('label' => 'Password'),
+            //     'second_options' => array('label' => 'Repeat Password'),
+            // ))
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => User::class,
+        ]);
+    }
+}
