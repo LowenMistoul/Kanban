@@ -68,7 +68,7 @@
                           </br>
                           <p>Propriétaires de ce tableau:</p>
                             {% for owner in tableau.owner %}
-                                <li class="usersRow col-sm-7">
+                                <li class="usersRow">
                                     <p class="col-sm-3" style="float:left;">{{owner.username}}<p/>
                                     <button class="remove" id="removeUser{{owner.id}}">
                                         <svg style="float:right;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
