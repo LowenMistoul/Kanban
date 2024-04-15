@@ -61,15 +61,15 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             
-            $passwordForm = $request->request->get('user[password][first]');
-            if($passwordForm && $passwordForm!="" ){
-            // 3) Encode the password (you could also do this via Doctrine listener)
-                $password = $passwordEncoder->hashPassword($user, $user->getPassword());
-                $user->setPassword($tempPassword);
-            }else{
-                $password = $passwordEncoder->hashPassword($user, $user->getPassword());
-                $user->setPassword($password);
-            }
+            // $passwordForm = $request->request->get('user[password][first]');
+            // if($passwordForm && $passwordForm!="" ){
+            // // 3) Encode the password (you could also do this via Doctrine listener)
+            //     $password = $passwordEncoder->hashPassword($user, $user->getPassword());
+            //     $user->setPassword($tempPassword);
+            // }else{
+            //     $password = $passwordEncoder->hashPassword($user, $user->getPassword());
+            //     $user->setPassword($password);
+            // }
             // 4) save the User!
             //$entityManager = $this->getDoctrine()->getManager();
             // $entityManager->persist($user);

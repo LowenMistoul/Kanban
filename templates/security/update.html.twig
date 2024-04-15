@@ -11,7 +11,7 @@
         <br/>
         {{ form_row(form.email) }}
         <br/>
-        {% if app.user %}
+        {# {% if app.user %}
         <p class="btn btn-primary" id="mdp">Changer de mot de passe</p>
         <div id="divmdp" style="display:none;">
         {% endif %}
@@ -21,7 +21,7 @@
             <br/>
          {% if app.user %}
         </div>
-        {% endif %}
+        {% endif %} #}
             <div style="display:flex;justify-content: center;">
                 <button style="width: 150px;margin:0 auto;" class="btn btn-lg btn-primary" type="submit">Update</button>
             </div>
