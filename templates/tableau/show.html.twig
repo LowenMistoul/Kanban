@@ -224,10 +224,10 @@
                                                         {% endfor %}
                                                     {% endif %} 
                                                     
-                                                    <select class="form-select" aria-label="Default select example">
+                                                    <select id="selectedColonne" class="form-select" aria-label="Default select example">
                                                     <option selected>Déplacer ce ticket</option>
                                                     {% for colonne in colonnes %}
-                                                        <option class="option" value="{{colonne.id}}">{{colonne.name}}</option>                    
+                                                        <option value="{{colonne.id}}">{{colonne.name}}</option>                    
                                                     {% endfor %}
                                                     </select>
                                                     </div>
