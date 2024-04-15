@@ -14,7 +14,6 @@
         const myModal = document.getElementById('myModal')
 
             $(document).ready(function(){
-                var timeModifie = false;
                 $("#mdp").on("click", function() {
                     $("#divmdp").toggle();
                     $(this).hide();
@@ -33,7 +32,6 @@
    
                 $(".datepicker").on("focusout", function() {
                     $(this).css("margin-bottom","1rem");
-                    timeModifie = true;
                 });
 
 
@@ -86,7 +84,7 @@
                     var tableauId =$(".tableau").attr('id');
                     var colonne = $('#selectedColonne').find(":selected").val();
                     var date=$( "#date"+id).datepicker( "getDate" );
-                    if(timeModifie==true){
+                    if(date != null){
                         var str = date.toLocaleDateString();
                     }else{
                         str = "...";
