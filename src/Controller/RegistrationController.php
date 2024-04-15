@@ -86,7 +86,7 @@ class RegistrationController extends AbstractController
 
         return $this->render(
             'security/update.html.twig',
-            array('form' => $form->createView(),'midifer'=>$modifier)
+            array('form' => $form->createView(),'modifer'=>$modifier)
         );
     }
 }
