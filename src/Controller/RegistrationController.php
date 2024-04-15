@@ -53,6 +53,7 @@ class RegistrationController extends AbstractController
     public function update(Request $request, UserPasswordHasherInterface $passwordEncoder,EntityManagerInterface $manager)
     {
         // 1) build the form
+        $modifier ="";
         $user = $this->getUser();
         $tempPassword= $user->getPassword();
         $form = $this->createForm(UserType::class, $user);
@@ -60,7 +61,7 @@ class RegistrationController extends AbstractController
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            
+            $modifier ="Informations modififiées";
             // $passwordForm = $request->request->get('user[password][first]');
             // if($passwordForm && $passwordForm!="" ){
             // // 3) Encode the password (you could also do this via Doctrine listener)
@@ -85,7 +86,7 @@ class RegistrationController extends AbstractController
 
         return $this->render(
             'security/update.html.twig',
-            array('form' => $form->createView(),'title'=>'Information')
+            array('form' => $form->createView(),'midifer'=>$modifier)
         );
     }
 }
