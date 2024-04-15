@@ -82,6 +82,7 @@
                     var name = $(this).find('#name').val();
                     var description = $(this).find('#description').val();
                     var tableauId =$(".tableau").attr('id');
+                    var colonne = $(".option").val;
                     var date=$( "#date"+id).datepicker( "getDate" );
                     if(date != null){
                         var str = date.toLocaleDateString();
@@ -103,6 +104,7 @@
                    // alert(date.toLocaleDateString());
                     //alert(str);
                     //alert(typeof str);
+                    alert(colonne);
                     console.log(date);
                     $(this).modal('hide');
                     
