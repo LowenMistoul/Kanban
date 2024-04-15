@@ -70,7 +70,7 @@ class TicketController extends AbstractController
             if($date!=""){
                 $ticket->setDate(new \DateTime($date));
             }
-            if ($colonne !="Déplacer ce ticket"){
+            if ($colonne != "Déplacer ce ticket"){
                 $colonne =$colonneRepository->findOneById($colonneId);
                 $ticket->setColonne($colonne);
             }
