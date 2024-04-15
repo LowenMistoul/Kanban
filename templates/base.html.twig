@@ -32,6 +32,7 @@
    
                 $(".datepicker").on("focusout", function() {
                     $(this).css("margin-bottom","1rem");
+                    $("#date"+id).val()=$( "#date"+id).datepicker( "getDate" );
                 });
 
 
@@ -84,7 +85,7 @@
                     var tableauId =$(".tableau").attr('id');
                     var colonne = $('#selectedColonne').find(":selected").val();
                     var date=$( "#date"+id).datepicker( "getDate" );
-                    if($( "#date"+id).val()!="..."){
+                    if($("#date"+id).val()!="..."){
                         var str = date.toLocaleDateString();
                     }else{
                         str = "...";
