@@ -57,6 +57,7 @@ class TicketController extends AbstractController
             $comments = $request->request->get('comments');
             $newtxt = $request->request->get('newtxt');
             $date = $request->request->get('time');
+            $colonneId = $request->request->get('colonne');
             $ticket = $ticketRepository->findOneById($ticketId);
 
             if(is_Null($comments)!=1){
@@ -68,6 +69,10 @@ class TicketController extends AbstractController
             $ticket->setDescription($description);
             if($date!=""){
                 $ticket->setDate(new \DateTime($date));
+            }
+            if ($colonne !="Déplacer ce ticket"){
+                $colonne =$colonneRepository->findOneById($colonneId);
+                $ticket->setColonne($colonne);
             }
             if($newtxt!=""){
                 $newComment = new Comment();
@@ -147,13 +152,8 @@ class TicketController extends AbstractController
             $colonneIdm = $request->request->get('colonne');
             
             $ticket = $ticketRepository->findOneById($ticketId);
-            if($colonneIdm == "Déplacer ce ticket"){
-                $colonne = $colonneRepository->findOneById($colonneId);
-                $ticket->setColonne($colonne);
-            }else{
-                $colonne = $colonneRepository->findOneById($colonneIdm);
-                $ticket->setColonne($colonne);
-            }
+            $colonne = $colonneRepository->findOneById($colonneId);
+            $ticket->setColonne($colonne);
         }
 
         $entityManager->persist($ticket);
