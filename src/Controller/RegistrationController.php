@@ -61,7 +61,7 @@ class RegistrationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             
             $passwordForm = $form["password"]->getData();
-            if($passwordForm && $passwordForm!="" ){
+            if($passwordForm && $passwordForm=="" ){
             // 3) Encode the password (you could also do this via Doctrine listener)
                 $password = $passwordEncoder->hashPassword($user, $user->getPassword());
                 $user->setPassword($password);
