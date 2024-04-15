@@ -144,9 +144,16 @@ class TicketController extends AbstractController
             $ticketId = $request->request->get('ticketId');
             $colonneId = $request->request->get('colonneId');
             $tableauId = $request->request->get('tableauId');
+            $colonneIdm = $request->request->get('colonne');
+            
             $ticket = $ticketRepository->findOneById($ticketId);
-            $colonne = $colonneRepository->findOneById($colonneId);
-            $ticket->setColonne($colonne);
+            if($colonneIdm == "Déplacer ce ticket"){
+                $colonne = $colonneRepository->findOneById($colonneId);
+                $ticket->setColonne($colonne);
+            }else{
+                $colonne = $colonneRepository->findOneById($colonneIdm);
+                $ticket->setColonne($colonne);
+            }
         }
 
         $entityManager->persist($ticket);
