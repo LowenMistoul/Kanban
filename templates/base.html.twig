@@ -26,7 +26,7 @@
                 });
 
                 $(".datepicker").on("focus", function() {
-                    $(".ui-datepicker-calendar").css({"background-color": "yellow","width":"300px"});
+                    $(".ui-datepicker-calendar").css({"width":"300px"});
                     $(this).css("margin-bottom","15rem");
                 });
    
@@ -84,10 +84,10 @@
                     var tableauId =$(".tableau").attr('id');
                     var colonne = $('#selectedColonne').find(":selected").val();
                     var date=$( "#date"+id).datepicker( "getDate" );
-                    if(date != null){
+                    if($( "#date"+id).val()!="..."){
                         var str = date.toLocaleDateString();
                     }else{
-                        str = "";
+                        str = "...";
                     }
                     //recupere les valeurs de tout les commentaires du ticket au cas ou update d'ancien commentaires
                     var txt = {};
