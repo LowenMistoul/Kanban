@@ -161,18 +161,17 @@
                                                 <p>
                                                 <p id="p1{{ticket.id}}" style="color:black;">{{ticket.name}}</p>
                                                 {# <p id="p2{{ticket.id}}" style="color:black;">{{ticket.description}}</p> #}
+                                                {# tu travailles sur cet array #}
                                                 {% set array = [] %}
                                                 {% for comment in ticket.comments %}
-                                                    {% if comment.owner.username in array %}
-                                        
-                                                    {% else %}
-                                                        {% set array = array|merge([{comment.owner.username}]) %}
+                                                    {% if comment.owner.username not in array %}
+                                                        {% set array = array|merge([{ userNames: comment.owner.username}]) %}
                                                     {% endif %}
                                                 {% endfor %}
                                                 <div style="display : flex; flex-direction:row;">
                                                     {% for owner in array %}
                                                     <div class="avatar">
-                                                        <p>{{owner|first}}</p>
+                                                        <p>{{owner.userNames|first}}</p>
                                                     </div>
                                                     {% endfor %}
                                                 </div>
