@@ -165,9 +165,10 @@
                                                 {% set array = [] %}
                                                 {% for comment in ticket.comments %}
                                                 {# {% for name in array %} #}
-                                                    {% if comment.owner.userName not in newArray %}
+                                                    {% if comment.owner.userName in newArray %}
                                                         My name is {{comment.owner.userName}}
-                                                    {# {% set newArray = newArray|merge([comment.owner.userName]) %} #}
+                                                    {% else %}
+                                                         {% set newArray = newArray|merge([comment.owner.userName]) %} 
                                                     {% endif %}
 
 
