@@ -1,3 +1,14 @@
+body{
+    background: hsla(355, 84%, 55%, 1);
+
+background: linear-gradient(135deg, hsla(355, 84%, 55%, 1) 0%, hsla(30, 33%, 5%, 1) 100%);
+
+background: -moz-linear-gradient(135deg, hsla(355, 84%, 55%, 1) 0%, hsla(30, 33%, 5%, 1) 100%);
+
+background: -webkit-linear-gradient(135deg, hsla(355, 84%, 55%, 1) 0%, hsla(30, 33%, 5%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#ED2939", endColorstr="#100C08", GradientType=1 );
+}
 .lien:hover{
     background-color:#f1f2f4;
 }
