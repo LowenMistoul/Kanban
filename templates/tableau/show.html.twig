@@ -224,7 +224,7 @@
                                                         {% endfor %}
                                                     {% endif %} 
                                                     
-                                                    <select id="selectedColonne" class="form-select" aria-label="Default select example">
+                                                    <select id="selectedColonne{{ticket.id}}" class="form-select" aria-label="Default select example">
                                                     <option selected>Déplacer ce ticket</option>
                                                     {% for colonne in colonnes %}
                                                         <option value="{{colonne.id}}">{{colonne.name}}</option>                    
