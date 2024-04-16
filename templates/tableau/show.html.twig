@@ -168,10 +168,11 @@
                                                         {% set array = array|merge([{ userNames: comment.owner.username}]) %}
                                                     {% endif %}
                                                 {% endfor %}
+                                                {% set items = array|column('userNames')%}
                                                 <div style="display : flex; flex-direction:row;">
-                                                    {% for owner in array %}
+                                                    {% for item in items %}
                                                     <div class="avatar">
-                                                        <p>{{owner.userNames|first}}</p>
+                                                        <p>{{items[loop.index0]|first}}</p>
                                                     </div>
                                                     {% endfor %}
                                                 </div>
