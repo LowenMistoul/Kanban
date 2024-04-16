@@ -166,7 +166,7 @@
                                                          {% set newArray = newArray|merge([comment.owner.userName]) %} 
                                                     {% endif %}
                                                 {% endfor %}
-                                                <div style="display : flex; flex-direction:row;">
+                                                <div style="display : flex; flex-direction:row; justify-content: flex-end;">
                                                     {% for item in newArray %}
                                                         <div class="avatar">
                                                             <p>{{item|first}}</p>

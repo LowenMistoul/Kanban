@@ -54,7 +54,6 @@
     background-color:#ffffff;
      border:1px solid grey;
     border-radius:5%; 
-    justify-content: flex-end;
      padding:2%;
      margin-bottom:1rem;
      -webkit-box-shadow: 9px 8px 5px 0px rgba(0,0,0,0.38);
@@ -63,12 +62,13 @@
 }
 
 .avatar{
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     background-color:blue;
-    line-height:20px;
+    line-height:30px;
     text-align:center;
     color:white;
+    margin-left: 1rem;
     border-radius: 50%;
 }
 
