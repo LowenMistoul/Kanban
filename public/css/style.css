@@ -53,12 +53,12 @@
 .divTicket{
     background-color:#ffffff;
      border:1px solid grey;
-     /* border-radius:5%; */
+    border-radius:5%; 
      padding:2%;
      margin-bottom:1rem;
-     -webkit-box-shadow: 10px 10px 5px -7px rgba(0,0,0,0.44);
-    -moz-box-shadow: 10px 10px 5px -7px rgba(0,0,0,0.44);
-    box-shadow: 10px 10px 5px -7px rgba(0,0,0,0.44);
+     -webkit-box-shadow: 9px 8px 5px 0px rgba(0,0,0,0.38);
+     -moz-box-shadow: 9px 8px 5px 0px rgba(0,0,0,0.38);
+     box-shadow: 9px 8px 5px 0px rgba(0,0,0,0.38);
 }
 
 
