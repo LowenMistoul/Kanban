@@ -163,16 +163,14 @@
                                                 {% set newArray = [] %}
                                                 {% for comment in ticket.comments %}
                                                     {% if comment.owner.userName not in newArray %}
-                                                       
-                                                    {# {% else %} #}
                                                          {% set newArray = newArray|merge([comment.owner.userName]) %} 
                                                     {% endif %}
                                                 {% endfor %}
                                                 <div style="display : flex; flex-direction:row;">
                                                     {% for item in newArray %}
-                                                    <div class="avatar">
-                                                        <p>{{item|first}}</p>
-                                                    </div>
+                                                        <div class="avatar">
+                                                            <p>{{item|first}}</p>
+                                                        </div>
                                                     {% endfor %}
                                                 </div>
                                             </div>
