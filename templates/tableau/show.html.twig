@@ -3,8 +3,7 @@
 
 {% block title %}Tableau{% endblock %}
 
-{% block body %} 
-<div class="container">   
+{% block body %}    
 <div style="display:flex;flex-direction:row;">
     <div style="display:block;flex-direction:row;">
         <div  id="offbar" style="height:100vh;display:none;border:grey 1px solid;width:100%;background-color:#fbfbfb;" >
@@ -328,6 +327,5 @@
                 <p style="text-align:center;">Ce tableau contient une colonne mais pas de ticket. <a style="color:blue;" data-bs-toggle="modal" data-bs-target="#nouveauTicketModal">Ajouter un ticket.</a></p>
             {% endif %}
     {% endif %}
-</div>
 </div>
 {% endblock %}
