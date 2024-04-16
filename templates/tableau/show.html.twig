@@ -165,9 +165,13 @@
                                                 {% for comment in ticket.comments %}
                                                     {% set array = array|merge([{ userNames: comment.owner.username}]) %}
                                                 {% endfor %}
-                                                {% for owner in array %}
-                                                <p>{{owner.userNames}}</p>
-                                                {% endfor %}
+                                                <div style="display : flex; flex-direction:row;">
+                                                    {% for owner in array %}
+                                                    <div class"avatar">
+                                                        <p>{{owner.userNames|first}}</p>
+                                                    </div>
+                                                    {% endfor %}
+                                                <div>
                                             </div>
                                         </a>
                                         <div class="modal fade editForm" id="voirTicketModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
