@@ -160,24 +160,14 @@
                                                     {{ticket.date ? ticket.date|date('Y-m-d') : ""}}
                                                 <p>
                                                 <p id="p1{{ticket.id}}" style="color:black;">{{ticket.name}}</p>
-                                                {# <p id="p2{{ticket.id}}" style="color:black;">{{ticket.description}}</p> #}
-                                                {# tu travailles sur cet array #}
                                                 {% set newArray = [] %}
                                                 {% for comment in ticket.comments %}
-                                                {# {% for name in array %} #}
-                                                    {% if comment.owner.userName in newArray %}
+                                                    {% if comment.owner.userName not in newArray %}
                                                        
-                                                    {% else %}
+                                                    {# {% else %} #}
                                                          {% set newArray = newArray|merge([comment.owner.userName]) %} 
                                                     {% endif %}
-
-
-                                                    {# {% endfor %} #}
-                                                    {# {% if comment.owner.username not in array %}
-                                                         {% set array = array|merge([{loop:comment.owner.username}]) %} 
-                                                    {% endif %} #}
                                                 {% endfor %}
-                                                {# {% set items = array|column('key')%}  #}
                                                 <div style="display : flex; flex-direction:row;">
                                                     {% for item in newArray %}
                                                     <div class="avatar">
