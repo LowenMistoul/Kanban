@@ -166,13 +166,13 @@
                                                     {% if comment.owner.username in array %}
                                         
                                                     {% else %}
-                                                        {% set array = array|merge([{ userNames: comment.owner.username}]) %}
+                                                        {% set array = array|merge([{comment.owner.username}]) %}
                                                     {% endif %}
                                                 {% endfor %}
                                                 <div style="display : flex; flex-direction:row;">
                                                     {% for owner in array %}
                                                     <div class="avatar">
-                                                        <p>{{owner.userNames|first}}</p>
+                                                        <p>{{owner|first}}</p>
                                                     </div>
                                                     {% endfor %}
                                                 </div>
