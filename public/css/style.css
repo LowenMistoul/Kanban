@@ -69,6 +69,7 @@
     text-align:center;
     color:white;
     border-radius: 50%;
+    float:right;
 }
 
 @media only screen and (max-width: 768px) {
