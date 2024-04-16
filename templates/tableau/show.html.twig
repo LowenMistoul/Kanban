@@ -147,7 +147,7 @@
                                 {% for ticket in tickets %}
                                     {% if ticket.colonne.name == colonne.name %}
                                         <a data-bs-toggle="modal" data-bs-target="#voirTicketModal{{ticket.id}}" id="{{ticket.id}}" style="text-decoration:none;" class="ticket">
-                                            <div style="background-color:#ffffff; border:1px solid grey;border-radius:5%;padding:2%;margin-bottom:1rem;">
+                                            <div class="divTicket" >
                                             {% set color , date = "black" , "now"|date('Y-m-d') %}
                                             {% if ticket.date|date('Y-m-d') > date|date('Y-m-d') %}
                                                 {% set color = "green" %}
