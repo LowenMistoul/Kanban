@@ -165,7 +165,7 @@
                                                 {% set array = [] %}
                                                 {% for comment in ticket.comments %}
                                                     {% if comment.owner.username not in array %}
-                                                        {# {% set array = array|merge([{comment.owner.username}]) %} #}
+                                                         {% set array = array|merge([{'key':comment.owner.username}]) %} 
                                                     {% endif %}
                                                 {% endfor %}
                                                 {# {% set items = array|column('userNames')%} #}
