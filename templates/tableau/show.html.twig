@@ -162,7 +162,7 @@
                                                 <p id="p1{{ticket.id}}" style="color:black;">{{ticket.name}}</p>
                                                 {# <p id="p2{{ticket.id}}" style="color:black;">{{ticket.description}}</p> #}
                                                 {# tu travailles sur cet array #}
-                                                {% set array = [] %}
+                                                {% set newArray = [] %}
                                                 {% for comment in ticket.comments %}
                                                 {# {% for name in array %} #}
                                                     {% if comment.owner.userName in newArray %}
