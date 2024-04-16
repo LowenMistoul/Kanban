@@ -163,8 +163,10 @@
                                                 {# <p id="p2{{ticket.id}}" style="color:black;">{{ticket.description}}</p> #}
                                                 {% set array = [] %}
                                                 {% for comment in ticket.comments %}
-                                                    {% if comment.owner.username not in array %}
-                                                    {% set array = array|merge([{ userNames: comment.owner.username}]) %}
+                                                    {% if comment.owner.username in array %}
+                                        
+                                                    {% else %}
+                                                        {% set array = array|merge([{ userNames: comment.owner.username}]) %}
                                                     {% endif %}
                                                 {% endfor %}
                                                 <div style="display : flex; flex-direction:row;">
