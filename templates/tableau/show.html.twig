@@ -163,10 +163,10 @@
                                                 {# <p id="p2{{ticket.id}}" style="color:black;">{{ticket.description}}</p> #}
                                                 {% set array = [] %}
                                                 {% for comment in ticket.comments %}
-                                                    {% set array = array|merge([{ comment.owner.id: comment.owner.username}]) %}
+                                                    {% set array = array|merge([{ userNames: comment.owner.username}]) %}
                                                 {% endfor %}
                                                 {% for owner in array %}
-                                                <p>{{array[owner]}}</p>
+                                                <p>{{owner.userNames}}</p>
                                                 {% endfor %}
                                             </div>
                                         </a>
