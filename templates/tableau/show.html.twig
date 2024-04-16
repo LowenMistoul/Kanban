@@ -161,12 +161,14 @@
                                                 <p>
                                                 <p id="p1{{ticket.id}}" style="color:black;">{{ticket.name}}</p>
                                                 {# <p id="p2{{ticket.id}}" style="color:black;">{{ticket.description}}</p> #}
+                                                {% set array = [] %}
+                                                {% for comment in ticket.comments %}
+                                                    {% set array = array|merge([{ comment.owner.id: comment.owner.username}]) %}
+                                                {% endfor %}
+                                                {% for owner in array %}
+                                                <p>{{array[owner]}}</p>
+                                                {% endfor %}
                                             </div>
-                                             {% if ticket.comments.owner is not empty %}
-                                                        {% for owner in ticket.comments.owner %}
-                                                        <p>L<p>
-                                                        {% endfor %}
-                                            {% endif %}
                                         </a>
                                         <div class="modal fade editForm" id="voirTicketModal{{ticket.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
