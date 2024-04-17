@@ -1,5 +1,6 @@
 body{
     height: 100vh;
+    background-repeat: no-repeat;
     background: hsla(355, 84%, 55%, 1);
     background: linear-gradient(315deg, hsla(355, 84%, 55%, 1) 0%, hsla(30, 33%, 5%, 1) 100%);
     background: -moz-linear-gradient(315deg, hsla(355, 84%, 55%, 1) 0%, hsla(30, 33%, 5%, 1) 100%);
