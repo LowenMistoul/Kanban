@@ -169,7 +169,7 @@
                                                 {% endfor %}
                                                 <div style="display:flex;flex-direction:row; justify-content:flex-end;margin-top:-1rem;">
                                                     {% for item in newArray %}
-                                                        <div class="avatar">
+                                                        <div class="avatar" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{item}}">
                                                             <p>{{item|first}}</p>
                                                         </div>
                                                     {% endfor %}

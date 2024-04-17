@@ -11,8 +11,9 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
         <script>
-        const myModal = document.getElementById('myModal')
-
+        //const myModal = document.getElementById('myModal')
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
             $(document).ready(function(){
                 $("#mdp").on("click", function() {
                     $("#divmdp").toggle();
