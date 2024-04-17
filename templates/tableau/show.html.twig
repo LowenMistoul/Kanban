@@ -112,8 +112,8 @@
                     {% for colonne in colonnes %}
                         <div class="colonneContainer" style="width:400px;height:75vh;display:inline-block;margin-left:3rem;overflow:auto;" id="{{colonne.position}}">
                             <div class="colonne glass" id="{{colonne.id}}" style="display:inline-block;width:350px;border-radius:15px;padding:15px;height: 75vh;overflow: auto;">
-                                <a data-bs-toggle="modal"  data-bs-target="#voirColonneModal{{colonne.id}}" id="{{colonne.id}}"><p style="margin-bottom:2rem;">{{colonne.name}}</p></a>
-                                <span style="width:100%;height:1px;border:1px solid black"></span>
+                                <a data-bs-toggle="modal"  data-bs-target="#voirColonneModal{{colonne.id}}" id="{{colonne.id}}"><p>{{colonne.name}}</p></a>
+                                <div style="margin-bottom:2rem;width:100%;height:1px;border:1px solid black"></div>
                                 <div class="modal fade editFormColonne" id="voirColonneModal{{colonne.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
