@@ -10,6 +10,10 @@ user_update:
     path: /update
     controller: App\Controller\RegistrationController::update
 
+user_update_password:
+    path: /updatePassword
+    controller: App\Controller\RegistrationController::updatePassword
+
 app_login:
     path: /
     controller: App\Controller\SecurityController::login

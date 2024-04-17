@@ -77,4 +77,36 @@ class RegistrationController extends AbstractController
             array('form' => $form->createView())
         );
     }
+
+    /**
+     * @Route("/updatePassword", name="user_update_password")
+     */
+    public function updatePassword(Request $request, UserPasswordHasherInterface $passwordEncoder,EntityManagerInterface $manager)
+    {
+        // 1) build the form
+        $user = $this->getUser();
+        $form = $this->createForm(UserType::class, $user);
+        $form->remove('email');
+        $form->remove('userName');
+        // 2) handle the submit (will only happen on POST)
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // 3) save the User!
+            // $entityManager = $this->getDoctrine()->getManager();
+            // $entityManager->persist($user);
+            // $entityManager->flush();
+            $persist = $manager->persist($user);
+            $flush = $manager->flush();
+
+            // ... do any other work - like sending them an email, etc
+            // maybe set a "flash" success message for the user
+
+            return $this->redirectToRoute('user_update_password');
+        }
+
+        return $this->render(
+            'security/updatePassword.html.twig',
+            array('form' => $form->createView())
+        );
+    }
 }
