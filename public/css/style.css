@@ -110,9 +110,10 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     color:white;
 }
 
-.navbar-link{
+.nav-link{
     color:white;
 }
+
 
 @media only screen and (max-width: 768px) {
     .grids{
