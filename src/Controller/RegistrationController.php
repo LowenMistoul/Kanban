@@ -79,7 +79,7 @@ class RegistrationController extends AbstractController
     }
 
     /**
-     * @Route("/updatePassword", name="user_update_password")
+     * @Route("/update-password", name="user_update_password")
      */
     public function updatePassword(Request $request, UserPasswordHasherInterface $passwordEncoder,EntityManagerInterface $manager)
     {
@@ -108,7 +108,7 @@ class RegistrationController extends AbstractController
         }
 
         return $this->render(
-            'security/updatePassword.html.twig',
+            'security/password.html.twig',
             array('form' => $form->createView())
         );
     }

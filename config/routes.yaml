@@ -11,7 +11,7 @@ user_update:
     controller: App\Controller\RegistrationController::update
 
 user_update_password:
-    path: /updatePassword
+    path: /update-password
     controller: App\Controller\RegistrationController::updatePassword
 
 app_login:
