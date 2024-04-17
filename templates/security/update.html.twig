@@ -5,16 +5,13 @@
     {{ form_start(form) }}
     <div style="display:flex;justify-content: center;align-items:center;height:800px;">
         <div>
-        <br/>
-        <h1 style="text-align:center;">Informations</h1>
-        <br/>
-        {{ form_row(form.userName) }}
-        <br/>
-        {{ form_row(form.email) }}
-        <br/>
-        {# {% if app.user %}
-        <p class="btn btn-primary" id="mdp">Changer de mot de passe</p>
-        {% endif %} #}
+            <br/>
+            <h1 style="text-align:center;">Informations</h1>
+            <br/>
+            {{ form_row(form.userName) }}
+            <br/>
+            {{ form_row(form.email) }}
+            <br/>
             <div style="display:flex;justify-content: center;">
                 <button style="width: 150px;margin:0 auto;" class="btn btn-lg btn-primary" type="submit">Update</button>
             </div>
