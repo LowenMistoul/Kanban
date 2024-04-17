@@ -90,14 +90,6 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
 }
 
-.dhidden{
-    display: none;
-}
-
-.mhidden{
-    display: contents;
-}
-
 @media only screen and (max-width: 768px) {
     .grids{
         display:grid;
@@ -108,13 +100,5 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     }
     .hidden{
         display: flex;
-    }
-
-    .dhidden{
-        display: contents;
-    }
-
-    .mhidden{
-        display: none;
     }
 } 
