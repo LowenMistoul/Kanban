@@ -87,7 +87,7 @@ class RegistrationController extends AbstractController
         $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
         $form->remove('email');
-        $form->remove('userName');
+        //$form->remove('userName');
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
