@@ -16,6 +16,14 @@ body{
     background-color:#f1f2f4;
 }
 
+.offBarClass{
+    height:100vh;
+    display:none;
+    border:grey 1px solid;
+    width:100%;
+    background-color:#fbfbfb;
+}
+
 .glass{
     /* From https://css.glass */
 background: rgba(255, 255, 255, 0.2);
@@ -151,5 +159,9 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 
     .mcolumn{
         flex-direction: column;
+    }
+
+    .offBarClass{
+        width:100vw;
     }
 } 
