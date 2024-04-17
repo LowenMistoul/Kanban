@@ -292,7 +292,7 @@
             <header class="header"></header>
         {% endblock %}
         {% block navbar %}
-        <nav style="width:100%;" class="glass navbar navbar-expand-lg bg-body-tertiary">
+        <nav style="width:100%;" class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <p id="monelement"></p>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -307,7 +307,7 @@
                             Home
                         </a>
                     </div>
-                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <div style="float:right;" class="d-grid gap-2 d-md-flex justify-content-md-end">
                     {% if app.user %}
                         <a class=" btn btn-primary" href="/update">Profile</a>
                     {% endif %}
