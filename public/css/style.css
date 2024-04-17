@@ -119,9 +119,12 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .btn-primary,.btn-succes{
-    background-color: #25290F;
+    background-color: #434A1C;
+    border-color:#434A1C ;
 }
-
+.btn-primary,.btn-succes:hover{
+    background-color: #434A1C;
+}
 
 @media only screen and (max-width: 768px) {
     .grids{
