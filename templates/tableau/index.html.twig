@@ -18,7 +18,7 @@
     <div style="display:flex;">
     <div id="grid" class="grids">
         {% for tableau in tableaus %}
-            <div class="card" style="width: 18rem;">
+            <div class="card glass" style="width: 18rem;">
                 <a style="text-decoration:none;align-items:center;" href="{{ path('app_tableau_show', {'id': tableau.id}) }}" class="stretched-link">
                     {# <img src="{{ asset('assets/images/' ~ "images.png") }}" class="card-img-top" alt="..."> #}
                     <svg style="margin-top:1rem;center;color:black;" xmlns="http://www.w3.org/2000/svg" width="250" height="250" fill="currentColor" class="card-img-top bi bi-table" viewBox="0 0 16 16">
