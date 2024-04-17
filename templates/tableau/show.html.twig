@@ -150,11 +150,11 @@
                                         <a data-bs-toggle="modal" data-bs-target="#voirTicketModal{{ticket.id}}" id="{{ticket.id}}" style="text-decoration:none;" class="ticket">
                                             <div class="divTicket" >
                                             {% set color , date = "black" , "now"|date('Y-m-d') %}
-                                            {% if ticket.date|date('Y-m-d') > date|date('Y-m-d') %}
+                                            {% if ticket.date|date('Y-m-d') < date|date('Y-m-d') %}
                                                 {% set color = "green" %}
                                             {% elseif ticket.date|date('Y-m-d') > date|date_modify("-3day")|date('Y-m-d') %}
                                                 {% set color = "orange" %}
-                                            {% elseif ticket.date|date('Y-m-d') < date|date_modify("-3day")|date('Y-m-d') %}
+                                            {% elseif ticket.date|date('Y-m-d') > date|date('Y-m-d') %}
                                                 {% set color = "red" %}
                                             {% endif %}
                                                 <p style="font-size:0.7rem;margin-bottom:-0.5rem;color:{{color }}">
