@@ -111,7 +111,7 @@
             <div id="{{tableau.id}}" class="tableau">
                     {% for colonne in colonnes %}
                         <div class="colonneContainer" style="width:400px;height:75vh;display:inline-block;margin-left:3rem;overflow:auto;" id="{{colonne.position}}">
-                            <div class="colonne" id="{{colonne.id}}" style="display:inline-block;background-color:#f1f2f4;width:350px;border-radius:15px;padding:15px;height: 75vh;overflow: auto;">
+                            <div class="colonne glass" id="{{colonne.id}}" style="display:inline-block;background-color:#f1f2f4;width:350px;border-radius:15px;padding:15px;height: 75vh;overflow: auto;">
                                 <a data-bs-toggle="modal"  data-bs-target="#voirColonneModal{{colonne.id}}" id="{{colonne.id}}"><p style="margin-bottom:2rem;">{{colonne.name}}</p></a>
                                 <div class="modal fade editFormColonne" id="voirColonneModal{{colonne.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
