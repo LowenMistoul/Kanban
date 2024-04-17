@@ -72,7 +72,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 .divTicket{
     background-color:#ffffff;
      border:1px solid grey;
-    border-radius:5%; 
+    border-radius:50%; 
      padding:2%;
      margin-bottom:1rem;
      -webkit-box-shadow: 9px 8px 5px 0px rgba(0,0,0,0.38);
