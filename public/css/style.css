@@ -120,10 +120,10 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 
 .btn-primary,.btn-succes{
     background-color: #434A1C;
-    border-color:#434A1C ;
+    border-color:white;
 }
 .btn-primary,.btn-succes:hover{
-    background-color: #434A1C;
+    background-color: #5f6927;
 }
 
 @media only screen and (max-width: 768px) {
