@@ -91,7 +91,10 @@ class RegistrationController extends AbstractController
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // 3) save the User!
+            // 3) Encode the password (you could also do this via Doctrine listener)
+            $password = $passwordEncoder->hashPassword($user, $user->getPassword());
+            $user->setPassword($password);
+            // 4) save the User!
             // $entityManager = $this->getDoctrine()->getManager();
             // $entityManager->persist($user);
             // $entityManager->flush();
