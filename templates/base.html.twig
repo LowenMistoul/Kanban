@@ -14,13 +14,8 @@
         //const myModal = document.getElementById('myModal')
   
             $(document).ready(function(){
-                      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-                $("#mdp").on("click", function() {
-                    $("#divmdp").toggle();
-                    $(this).hide();
-                    $("#user_password_first").attr("required","false");
-                });
+                const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+                const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
                 //gestion du date picker
                 $('.datepicker').datepicker({
