@@ -1,14 +1,22 @@
 {{ form_start(form) }}
     {# {{ form_widget(form) }} #}
         <div style="display:flex;justify-content: center;align-items:center;height:800px;">
-        <div>
-        <h1 style="text-align:center;">Nouveau tableau</h1>
-        <br/>
-        {{ form_row(form.name) }}
-        <br/>
-            <div style="display:flex;justify-content: center;">
-                <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
-            </div>
+        <div style="padding:40px" class="glass">
+            <br/>
+            <h1 style="text-align:center;">Nouveau tableau</h1>
+            <br/>
+                <div style="display:flex;justify-content:center;" class="row form-group">
+                    <div class="col-sm-5">
+                        <label for="nom tableau" class="form-label">Nom d'utilisateur:</label>
+                    </div>
+                    <div class="col-sm-6">
+                        {{ form_widget(form.name) }}
+                         <br/>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content: center;">
+                    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+                </div>
         </div>
     </div>
 {{ form_end(form) }}
