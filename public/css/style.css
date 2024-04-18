@@ -161,6 +161,15 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     margin:0 3rem 0 3rem;
 }
 
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+.tableauDroite {
+    display:block;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+
 
 @media only screen and (max-width: 768px) {
     .grids{
@@ -204,4 +213,14 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     .tableauNom{
         margin:0 1.5rem 0 3rem;
     }
+
+    .tableauDroite::-webkit-scrollbar {
+        display: none;/* Chrome ,safari , Opera*/
+    }
+
+/* Hide scrollbar for IE, Edge and Firefox */
+ .tableauDroite {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 } 
