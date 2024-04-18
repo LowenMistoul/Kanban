@@ -160,13 +160,10 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 .tableauNom{
     margin:0 3rem 0 3rem;
 }
-
   
-  /* Hide scrollbar for IE, Edge and Firefox */
 .tableauDroite {
-    display:block;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    display: block;
+    width: 100vw;
 }
 
 
@@ -194,6 +191,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 
     .offBarClass{
         width:100vw;
+        z-index: -1;
     }
 
     .tableau{
@@ -213,14 +211,4 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     .tableauNom{
         margin:0 1.5rem 0 3rem;
     }
-
-    .tableauDroite::-webkit-scrollbar {
-        display: none;/* Chrome ,safari , Opera*/
-    }
-
-/* Hide scrollbar for IE, Edge and Firefox */
- .tableauDroite {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
 } 
