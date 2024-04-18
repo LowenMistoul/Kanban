@@ -69,3 +69,7 @@ app_tableau_add_user:
 app_tableau_edit:
     path: /editTableau
     controller : App\Controller\TableauController::editTableau
+
+app_mailer:
+    path: /mailer
+    controller : App\Controller\MailerController::sendEmail
