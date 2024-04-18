@@ -28,8 +28,8 @@ class MailerController extends AbstractController
   $mailer->send($email);
 
         // ...
-      // return new Response(
-      //     'Email was sent'
-      //  );
+      return new Response(
+          'Email was sent'
+       );
     }
 }
