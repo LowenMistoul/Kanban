@@ -147,84 +147,6 @@
                                             </div>
                                         </div>
                                     </a>
-                                    <div class="modal fade editForm" id="voirTicketModal{{ticket.id}}" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{ticket.name}}</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="container-fluid">
-                                                        <form id="editForm">
-                                                            <div class="row form-group">
-                                                                <div class="col-sm-2">
-                                                                    <label class="control-label" style="position:inline; top:7px;">Due Date:</label>
-                                                                </div>
-                                                                <div class="col-sm-10">
-                                                                    <input type="text" value={{ticket.date ? ticket.date|date('Y-m-d') : "..."}}  id="date{{ticket.id}}" class="datepicker form-control date{{ticket.name}}">
-                                                                </div>
-                                                            </div>
-                                                            </br>
-                                                            <div class="row form-group">
-                                                                <div class="col-sm-2">
-                                                                    <label class="control-label" style="position:inline; top:7px;">name:</label>
-                                                                </div>
-                                                                <div class="col-sm-10">
-                                                                    <input type="text" class="form-control name" id="name" value="{{ticket.name}}" name="name{{ticket.id}}">
-                                                                </div>
-                                                            </div>
-                                                            </br>
-                                                            <div class="form-group">
-                                                                <div class="col-sm-2">
-                                                                    <label class="control-label" style="position:inline; top:7px;">Description:</label>
-                                                                </div>
-                                                                <div class="col-sm-15">
-                                                                    <textArea type="textArea" rows="5" class="form-control description" id="description" description="description">{{ticket.description}}</textArea>
-                                                                </div>
-                                                                </br>
-                                                                <textArea class="newtxt{{ticket.id}}" id="newtxt" type="textArea" style="width:100%;overflow-wrap: break-word;" placeholder="Écrire un commentaire"></textArea>
-                                                            </div>
-                                                            {% if ticket.comments is not empty %}
-                                                                {% for comment in ticket.comments %}
-                                                                    </br>
-                                                                    <div>
-                                                                        <div style="display:flex;flex-direction:column;" id="comment{{comment.id}}">
-                                                                            <div style="display:flex;flex-direction:row; margin-bottom:-1.1rem;">
-                                                                                <p style="font-weight:bold;font-size:0.7rem;"> {{comment.owner.username}}</p>
-                                                                                <p style="margin-left:0.5rem;font-size:0.7rem;"> {{comment.date|date('Y-m-d à h:i')}}{{comment.modifie ? "(modifié)" : "" }}</p>
-                                                                            </div>
-                                                                            
-                                                                            <textArea class="txt" id="area" {{app.user == comment.owner ?"" : "disabled" }} type="textArea" style="width:100%;overflow-wrap: break-word;">{{comment.text}}</textArea>
-                                                                            {% if app.user == comment.owner %}
-                                                                                <a style="font-size:0.7rem;color:grey;" href="{{path('app_comment_delete',{'id':comment.id})}}" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                                                                            {% endif %}
-                                                                            
-                                                                            {# <textArea class="txt" id="2" type="textArea" style="width:100%;overflow-wrap: break-word;">woopidyscoop</textArea> #}
-                                                                        </div>
-                                                                    </div>
-                                                                    </br>
-                                                                {% endfor %}
-                                                            {% endif %} 
-                                                            <select class="hidden" id="selectedColonne{{ticket.id}}" class="form-select" aria-label="Default select example">
-                                                                <option selected>Déplacer ce ticket</option>
-                                                                {% for colonne in colonnes %}
-                                                                    <option value="{{colonne.id}}">{{colonne.name}}</option>                    
-                                                                {% endfor %}
-                                                            </select>
-                                                            <div class="modal-footer justify-content-between">
-                                                                <a class="btn btn-danger" href="{{path('app_ticket_delete',{'id':ticket.id})}}" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                                                                <div>
-                                                                    <button type="button" class="btn btn-default" data-bs-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-                                                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Update</a>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 {% endif %}
                             {% endfor %}
                         </div>        
@@ -295,7 +217,90 @@
             </div>
         </div>
         
-
+        <!-- Modal edit ticket -->
+        {% if tickets is not empty %}
+            {% for ticket in tickets %}
+                <div class="modal fade editForm" id="voirTicketModal{{ticket.id}}" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ticket.name}}</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form id="editForm">
+                                        <div class="row form-group">
+                                            <div class="col-sm-2">
+                                                <label class="control-label" style="position:inline; top:7px;">Due Date:</label>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <input type="text" value={{ticket.date ? ticket.date|date('Y-m-d') : "..."}}  id="date{{ticket.id}}" class="datepicker form-control date{{ticket.name}}">
+                                            </div>
+                                        </div>
+                                        </br>
+                                        <div class="row form-group">
+                                            <div class="col-sm-2">
+                                                <label class="control-label" style="position:inline; top:7px;">name:</label>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control name" id="name" value="{{ticket.name}}" name="name{{ticket.id}}">
+                                            </div>
+                                        </div>
+                                        </br>
+                                        <div class="form-group">
+                                            <div class="col-sm-2">
+                                                <label class="control-label" style="position:inline; top:7px;">Description:</label>
+                                            </div>
+                                            <div class="col-sm-15">
+                                                <textArea type="textArea" rows="5" class="form-control description" id="description" description="description">{{ticket.description}}</textArea>
+                                            </div>
+                                            </br>
+                                            <textArea class="newtxt{{ticket.id}}" id="newtxt" type="textArea" style="width:100%;overflow-wrap: break-word;" placeholder="Écrire un commentaire"></textArea>
+                                        </div>
+                                        {% if ticket.comments is not empty %}
+                                            {% for comment in ticket.comments %}
+                                                </br>
+                                                <div>
+                                                    <div style="display:flex;flex-direction:column;" id="comment{{comment.id}}">
+                                                        <div style="display:flex;flex-direction:row; margin-bottom:-1.1rem;">
+                                                            <p style="font-weight:bold;font-size:0.7rem;"> {{comment.owner.username}}</p>
+                                                            <p style="margin-left:0.5rem;font-size:0.7rem;"> {{comment.date|date('Y-m-d à h:i')}}{{comment.modifie ? "(modifié)" : "" }}</p>
+                                                        </div>
+                                                        
+                                                        <textArea class="txt" id="area" {{app.user == comment.owner ?"" : "disabled" }} type="textArea" style="width:100%;overflow-wrap: break-word;">{{comment.text}}</textArea>
+                                                        {% if app.user == comment.owner %}
+                                                            <a style="font-size:0.7rem;color:grey;" href="{{path('app_comment_delete',{'id':comment.id})}}" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                                        {% endif %}
+                                                        
+                                                        {# <textArea class="txt" id="2" type="textArea" style="width:100%;overflow-wrap: break-word;">woopidyscoop</textArea> #}
+                                                    </div>
+                                                </div>
+                                                </br>
+                                            {% endfor %}
+                                        {% endif %} 
+                                        <select class="hidden" id="selectedColonne{{ticket.id}}" class="form-select" aria-label="Default select example">
+                                            <option selected>Déplacer ce ticket</option>
+                                            {% for colonne in colonnes %}
+                                                <option value="{{colonne.id}}">{{colonne.name}}</option>                    
+                                            {% endfor %}
+                                        </select>
+                                        <div class="modal-footer justify-content-between">
+                                            <a class="btn btn-danger" href="{{path('app_ticket_delete',{'id':ticket.id})}}" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                            <div>
+                                                <button type="button" class="btn btn-default" data-bs-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                                                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Update</a>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %} 
+        {% endif %}
+        
         <!-- Modal nouveau ticket -->
         <div class="modal fade" id="nouveauTicketModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
