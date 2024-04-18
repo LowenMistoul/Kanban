@@ -183,8 +183,10 @@ class TableauController extends AbstractController
             return $this->render('tableau/show.html.twig', [
                 'tableau' => $tableauRepository->findOneById($tableauId), 'colonnes'=> $colonnes, 'tickets' => $tickets,
             ]);
-
         }
+        return $this->render('tableau/show.html.twig', [
+            'tableau' => $tableauRepository->findOneById($tableauId), 'colonnes'=> $colonnes, 'tickets' => $tickets,
+        ]);
     }
 
     #[Route('/{id}', name: 'app_tableau_delete', methods: ['POST'])]
