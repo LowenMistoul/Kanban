@@ -128,9 +128,9 @@
                 });
 
                 //edit tableau ajouter user
-                $('.editTableau').submit(function(e){
-                    var id = $(this).attr('id');
-                    id=id.replace("voirTableauModal","");
+                $('#editTableau').submit(function(e){
+                    //var id = $(this).attr('id');
+                    //id=id.replace("voirTableauModal","");
                     e.preventDefault();
                     var nameTableau = $(this).find("#nameTableau").val();
                     var address = $(this).find("#address").val();
