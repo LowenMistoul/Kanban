@@ -1,5 +1,6 @@
 html{
     height: 100vh;
+    overflow-x: hidden;
     background-repeat: no-repeat;
     background: hsla(35, 89%, 81%, 1);
     background: linear-gradient(315deg, hsla(35, 89%, 81%, 1) 0%, hsla(30, 39%, 21%, 1) 100%);
