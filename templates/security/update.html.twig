@@ -4,21 +4,32 @@
 {% block body %}
     {{ form_start(form) }}
     <div style="display:flex;justify-content: center;align-items:center;height:800px;">
-        <div>
+        <div style="padding:20px" class="glass">
             <br/>
             <h1 style="text-align:center;">Informations</h1>
             <br/>
-            {{ form_row(form.userName) }}
+            <div style="display:flex;justify-content:center;" class="row form-group">
+                <div class="col-sm-5">
+                    <label for="userName" class="form-label">Nom d'utilisateur:</label>
+                </div>
+                <div class="col-sm-6">
+                    {{ form_row(form.userName) }}
+                </div>
+            </div>
             <br/>
-            {{ form_row(form.email) }}
+            <div style="display:flex;justify-content:center;" class="row form-group">
+                <div class="col-sm-5">
+                    <label for="email" class="form-label">email:</label>
+                </div>
+                <div class="col-sm-6">
+                    {{ form_row(form.email) }}
+                </div>
+                </div>
+            </div>
             <br/>
-
             <div  style="display:flex;justify-content: center;">
                 <a href="/update-password" style="width: 250px;margin:0 auto;" class="btn btn-lg btn-primary">Changer mot de passe</a>
-            </div>
-
-            <br/>
-            <div style="display:flex;justify-content: center;">
+                <br/>
                 <button style="width: 150px;margin:0 auto;" class="btn btn-lg btn-primary" type="submit">Update</button>
             </div>
         </div>
