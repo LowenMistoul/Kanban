@@ -40,7 +40,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .tableau{
-    overflow: auto;
+    overflow-y: auto;
     white-space: nowrap;
 }
 
