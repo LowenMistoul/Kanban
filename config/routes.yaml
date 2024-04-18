@@ -71,5 +71,5 @@ app_tableau_edit:
     controller : App\Controller\TableauController::editTableau
 
 app_mailer:
-    path: /mailer
+    path: /mailer-send
     controller : App\Controller\MailerController::sendEmail
