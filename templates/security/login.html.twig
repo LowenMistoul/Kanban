@@ -12,7 +12,7 @@
         <div class="mb-3">
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
-    {% endif %}
+    {% else %}
 
     <div style="display:flex;justify-content: center;align-items:center;height:800px;">
         <div>
@@ -34,4 +34,5 @@
         </div>
     </div>
 </form>
+{% endif %}
 {% endblock %}

@@ -19,7 +19,6 @@ class CommentType extends AbstractType
         $builder
             ->add('text')
             ->add('date')
-
             ->add('owner',EntityType::class,['class'=>User::class,'choice_label' => 'username'])
             ->add('ticket',EntityType::class,['class'=>Ticket::class,'choice_label' => 'name'])
             //->add('colonne',EntityType::class, ['class' => Colonne::class, 'choice_label' => 'name' ])
