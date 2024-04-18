@@ -25,7 +25,7 @@ class MailerController extends AbstractController
         ->html('<p>See Twig integration for better HTML integration!</p>');
 
 // //....
-//   $mailer->send($email);
+   $mailer->send($email);
 
         // ...
       return new Response(
