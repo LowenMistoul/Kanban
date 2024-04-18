@@ -113,7 +113,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);
     background-color: #54442bff;
 }
 
-.navbar-custom .container-fluid{
+.navbar-custom.container-fluid{
     padding: 8px;
 }
 
