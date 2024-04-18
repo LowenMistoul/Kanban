@@ -11,7 +11,7 @@ use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 class MailerController extends AbstractController
 {
-    #[Route('/mailer', name: 'app_mailer')]
+    #[Route('/mailer', name: 'app_mailer', methods: ['GET', 'POST'])]
     public function sendEmail(MailerInterface $mailer):Response
     {
         $email = (new Email())
