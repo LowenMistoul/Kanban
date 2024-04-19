@@ -67,6 +67,7 @@
                                 </div>
                                 </br>
                                 <p>Propriétaires de ce tableau:</p>
+                                <form>
                                 {% for owner in tableau.owner %}
                                     <li class="usersRow">
                                         <p class="col-sm-3" style="float:left;">{{owner.username}}<p/>
@@ -78,6 +79,7 @@
                                         </button>
                                     </li>
                                 {% endfor %}
+                                <form>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
