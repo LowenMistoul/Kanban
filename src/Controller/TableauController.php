@@ -165,9 +165,6 @@ class TableauController extends AbstractController
                 $entityManager->persist($addedUser);
                 $entityManager->persist($tableau);
                 $entityManager->flush();
-                $colonnes= $colonneRepository->findByTableauId($tableauId);
-                $tickets= $ticketRepository->findByTableauId($tableauId);
-                return $this->redirectToRoute('app_tableau_show', ['id' => $tableauId], Response::HTTP_SEE_OTHER);
             }else{
                 $tableau = $tableauRepository->findOneById($tableauId);
                 $tableau->setName($nameTableau);
