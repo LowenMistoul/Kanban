@@ -158,34 +158,36 @@ class TableauController extends AbstractController
             $tableauId = $request->request->get('tableauId');
             $remove = $request->request->get('remove');
             $removeId = $request->request->get('id');
+            $tableau = $tableauRepository->findOneById($tableauId);
+            $tableau->setName($nameTableau);
             if($remove && $removeId && $remove==true ){
                 $tableau = $tableauRepository->findOneById($tableauId);
-                $addedUser=$userRepository->findOneById($removeId);
-                $addedUser->removeTableau($tableau);
-                $entityManager->persist($addedUser);
+                $removedUser=$userRepository->findOneById($removeId);
+                $removedUser->removeTableau($tableau);
+                $entityManager->persist($removedUser);
                 $entityManager->persist($tableau);
-                $entityManager->flush();
+                if($address == ""){
+                    $entityManager->flush();
+                }
                 $colonnes= $colonneRepository->findByTableauId($tableauId);
                 $tickets= $ticketRepository->findByTableauId($tableauId);
-                return $this->redirectToRoute('app_tableau_show', ['id' => $tableauId], Response::HTTP_SEE_OTHER);
+                //return $this->redirectToRoute('app_tableau_show', ['id' => $tableauId], Response::HTTP_SEE_OTHER);
             }else{
-                $tableau = $tableauRepository->findOneById($tableauId);
-                $tableau->setName($nameTableau);
                 if($address && $address!=""){
                     $addedUser=$userRepository->findOneByEmail($address);
                     $addedUser->addTableau($tableau);
-
                     $entityManager->persist($addedUser);
                 }
-                $entityManager->persist($tableau);
-                $entityManager->flush();
-                return $this->redirectToRoute('app_tableau_index', [], Response::HTTP_SEE_OTHER);
-             }
 
+               
+             }
+             $entityManager->persist($tableau);
+             $entityManager->flush();
             //$colonnes= $colonneRepository->findByTableauId($tableauId);
             //$tickets= $ticketRepository->findByTableauId($tableauId);
 
         }
+        return $this->redirectToRoute('app_tableau_show', ['id' => $tableauId], Response::HTTP_SEE_OTHER);
 
     }
 
