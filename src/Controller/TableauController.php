@@ -158,28 +158,34 @@ class TableauController extends AbstractController
             $tableauId = $request->request->get('tableauId');
             $remove = $request->request->get('remove');
             $removeId = $request->request->get('id');
-            $tableau = $tableauRepository->findOneById($tableauId);
-            $tableau->setName($nameTableau);
-
-            if($remove && $removeId ){
-                $removedUser=$userRepository->findOneById($removeId);
-                $removedUser->removeTableau($tableau);
-                $entityManager->persist($removedUser);
-            }
-            
-            if($address && $address!=""){
-                $addedUser=$userRepository->findOneByEmail($address);
-                $addedUser->addTableau($tableau);
+            if($remove && $removeId && $remove==true ){
+                $tableau = $tableauRepository->findOneById($tableauId);
+                $addedUser=$userRepository->findOneById($removeId);
+                $addedUser->removeTableau($tableau);
                 $entityManager->persist($addedUser);
-            }
-            $entityManager->persist($tableau);
-            $entityManager->flush();
-             
+                $entityManager->persist($tableau);
+                $entityManager->flush();
+                $colonnes= $colonneRepository->findByTableauId($tableauId);
+                $tickets= $ticketRepository->findByTableauId($tableauId);
+                return $this->redirectToRoute('app_tableau_show', ['id' => $tableauId], Response::HTTP_SEE_OTHER);
+            }else{
+                $tableau = $tableauRepository->findOneById($tableauId);
+                $tableau->setName($nameTableau);
+                if($address && $address!=""){
+                    $addedUser=$userRepository->findOneByEmail($address);
+                    $addedUser->addTableau($tableau);
+
+                    $entityManager->persist($addedUser);
+                }
+                $entityManager->persist($tableau);
+                $entityManager->flush();
+             }
 
             $colonnes= $colonneRepository->findByTableauId($tableauId);
             $tickets= $ticketRepository->findByTableauId($tableauId);
             return $this->redirectToRoute('app_tableau_show', ['id' => $tableauId], Response::HTTP_SEE_OTHER);
         }
+
     }
 
     #[Route('/{id}', name: 'app_tableau_delete', methods: ['POST'])]
