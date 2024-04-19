@@ -167,9 +167,7 @@ class TableauController extends AbstractController
                 $entityManager->flush();
                 $colonnes= $colonneRepository->findByTableauId($tableauId);
                 $tickets= $ticketRepository->findByTableauId($tableauId);
-                return $this->render('tableau/show.html.twig', [
-                    'tableau' => $tableauRepository->findOneById($tableauId), 'colonnes'=> $colonnes, 'tickets' => $tickets,
-                ]);
+                return $this->redirectToRoute('app_tableau_show', ['id' => $tableauId], Response::HTTP_SEE_OTHER);
             }else{
                 $tableau = $tableauRepository->findOneById($tableauId);
                 $tableau->setName($nameTableau);
@@ -185,13 +183,8 @@ class TableauController extends AbstractController
 
             $colonnes= $colonneRepository->findByTableauId($tableauId);
             $tickets= $ticketRepository->findByTableauId($tableauId);
-            return $this->render('tableau/show.html.twig', [
-                'tableau' => $tableauRepository->findOneById($tableauId), 'colonnes'=> $colonnes, 'tickets' => $tickets,
-            ]);
+            return $this->redirectToRoute('app_tableau_show', ['id' => $tableauId], Response::HTTP_SEE_OTHER);
         }
-        return $this->render('tableau/show.html.twig', [
-            'tableau' => $tableauRepository->findOneById($tableauId), 'colonnes'=> $colonnes, 'tickets' => $tickets,
-        ]);
     }
 
     #[Route('/{id}', name: 'app_tableau_delete', methods: ['POST'])]
