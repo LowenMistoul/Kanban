@@ -44,7 +44,7 @@
                 //search ticket
                   $("#myInput").on("keyup", function() {
                     var value = $(this).val().toLowerCase();
-                    $(".tableau div div a .divTicket").filter(function() {
+                    $(".divTicket").filter(function() {
                         $(this).toggle($(this).find("p").text().toLowerCase().indexOf(value) > -1)
                     });
                 });
