@@ -134,9 +134,9 @@
                     e.preventDefault();
                     var nameTableau = $(this).find("#nameTableau").val();
                     var address = $(this).find("#address").val();
-                    var tableauId =$(".tableau").attr('id');
+                    var tableauId = $(".tableau").attr('id');
                     $(this).modal('hide');
-                    $(".tableauNom").html("address");
+                    $(".tableauNom").txt(nameTableau);
                     //alert(nameTableau);
                     //alert(address);
                     //alert(tableauId);
