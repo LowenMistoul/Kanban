@@ -137,9 +137,9 @@
                     var tableauId = $(".tableau").attr('id');
                     $(this).modal('hide');
                     $(".tableauNom").text(nameTableau);
-                    //alert(nameTableau);
-                    //alert(address);
-                    //alert(tableauId);
+                    alert(nameTableau);
+                    alert(address);
+                    alert(tableauId);
                     $.ajax({
                         url: "{{ path('app_tableau_edit') }}", // point to server-side PHP script
                         dataType: 'json',
