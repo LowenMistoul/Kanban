@@ -158,7 +158,7 @@ class TableauController extends AbstractController
             $tableauId = $request->request->get('tableauId');
             $remove = $request->request->get('remove');
             $removeId = $request->request->get('id');
-            if($remove && $removeId && $remove=true ){
+            if($remove && $removeId && $remove==true ){
                 $tableau = $tableauRepository->findOneById($tableauId);
                 $addedUser=$userRepository->findOneById($removeId);
                 $addedUser->removeTableau($tableau);
