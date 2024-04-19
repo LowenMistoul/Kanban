@@ -158,25 +158,22 @@ class TableauController extends AbstractController
             $tableauId = $request->request->get('tableauId');
             $remove = $request->request->get('remove');
             $removeId = $request->request->get('id');
+            $tableau = $tableauRepository->findOneById($tableauId);
+            $addedUser=$userRepository->findOneById($removeId);
             if($remove && $removeId && $remove==true ){
-                $tableau = $tableauRepository->findOneById($tableauId);
-                $addedUser=$userRepository->findOneById($removeId);
                 $addedUser->removeTableau($tableau);
                 $entityManager->persist($addedUser);
-                $entityManager->persist($tableau);
-                $entityManager->flush();
-            }else{
-                $tableau = $tableauRepository->findOneById($tableauId);
-                $tableau->setName($nameTableau);
-                if($address && $address!=""){
-                    $addedUser=$userRepository->findOneByEmail($address);
-                    $addedUser->addTableau($tableau);
+            }
+            $tableau->setName($nameTableau);
+            if($address && $address!=""){
+                $addedUser=$userRepository->findOneByEmail($address);
+                $addedUser->addTableau($tableau);
 
-                    $entityManager->persist($addedUser);
-                }
-                $entityManager->persist($tableau);
-                $entityManager->flush();
-             }
+                $entityManager->persist($addedUser);
+            }
+            $entityManager->persist($tableau);
+            $entityManager->flush();
+             
 
             $colonnes= $colonneRepository->findByTableauId($tableauId);
             $tickets= $ticketRepository->findByTableauId($tableauId);
