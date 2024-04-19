@@ -179,11 +179,12 @@ class TableauController extends AbstractController
                 }
                 $entityManager->persist($tableau);
                 $entityManager->flush();
+                return $this->redirectToRoute('app_tableau_index', [], Response::HTTP_SEE_OTHER);
              }
 
-            $colonnes= $colonneRepository->findByTableauId($tableauId);
-            $tickets= $ticketRepository->findByTableauId($tableauId);
-            return $this->redirectToRoute('app_tableau_show', ['id' => $tableauId], Response::HTTP_SEE_OTHER);
+            //$colonnes= $colonneRepository->findByTableauId($tableauId);
+            //$tickets= $ticketRepository->findByTableauId($tableauId);
+
         }
 
     }
