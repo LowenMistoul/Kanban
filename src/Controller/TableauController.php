@@ -185,7 +185,7 @@ class TableauController extends AbstractController
              $entityManager->flush();
             //$colonnes= $colonneRepository->findByTableauId($tableauId);
             //$tickets= $ticketRepository->findByTableauId($tableauId);
-
+// tu travailles sur ce controller , fait un ctrl-z jusqu'au moment ou tu changes les redirect pour version qui fonctionne
         }
         return $this->redirectToRoute('app_tableau_show', ['id' => $tableauId], Response::HTTP_SEE_OTHER);
 
