@@ -44,20 +44,17 @@ class ColonneController extends AbstractController
         if($request->isXmlHttpRequest()){
             $colonneId = $request->request->get('colonneId');
             $name = $request->request->get('nameColonne');
-            
             $tableauId = $request->request->get('$tableauId');
-            
             $colonne = $colonneRepository->findOneById($colonneId);
-          
             $id = (int)$tableauId;
             $colonne->setName($name);
             
         }
 
-            $entityManager->persist($colonne);
-            $entityManager->flush();
+        $entityManager->persist($colonne);
+        $entityManager->flush();
 
-            return $this->redirectToRoute('app_tableau_show', ['id' => $id], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_tableau_show', ['id' => $id], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/tableau/deleteColonne/{id}', name: 'app_colonne_delete', methods: ['POST','GET'])]
@@ -106,11 +103,10 @@ class ColonneController extends AbstractController
             $colonneContainerId2 =$request->request->get('colonneContainerId2');
             var_dump($colonneContainerId2);
             $tableauId = $request->request->get('tableauId');
-            //$ticket = $ticketRepository->findOneById($ticketId);
             $colonne = $colonneRepository->findOneById($colonneId);
             $colonne2 = $colonneRepository->findOneById($colonneId2);
             
-            //$var = $colonne.getPosition()
+            
             $colonne->setPosition($colonneContainerId);
             $colonne2->setPosition($colonneContainerId2);
 

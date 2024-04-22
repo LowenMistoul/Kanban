@@ -79,7 +79,6 @@ class TicketController extends AbstractController
                 $newComment->setText($newtxt);
                 $newComment->setOwner($this->getUser());
                 $newComment->setDate();
-                //$newComment->setTicket($ticket);
                 $ticket->addComment($newComment);
                 $entityManager->persist($newComment);
                 $entityManager->flush();
@@ -95,13 +94,11 @@ class TicketController extends AbstractController
                     $entityManager->flush();
                 }
              }
-             //var_dump($comments);
             
         }
             $entityManager->persist($ticket);
             $entityManager->flush();
 
-            //return $this->redirectToRoute('app_ticket_test');
             return $this->redirectToRoute('app_tableau_show', ['id' => $id], Response::HTTP_SEE_OTHER);
     }
 
@@ -126,10 +123,9 @@ class TicketController extends AbstractController
             $acces=false;
         }
         if($acces){
-             //if ($this->isCsrfTokenValid('delete'.$ticket->getId(), $request->request->get('_token'))) {
-                 $entityManager->remove($ticket);
-                 $entityManager->flush();
-             //}
+
+            $entityManager->remove($ticket);
+            $entityManager->flush();
             
             return $this->redirectToRoute('app_tableau_show', ['id'=>$tableau->getId()], Response::HTTP_SEE_OTHER);
         }
