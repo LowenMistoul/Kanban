@@ -27,7 +27,7 @@ app_tableau_index:
     controller: App\Controller\TableauController::index
 
 app_ticket_new:
-    path: /tableau/newTicket/{id}/{colonne}
+    path: /tableau/newTicket/{id}/
     controller : App\Controller\TicketController::newTicket
 
 app_colonne_new:
