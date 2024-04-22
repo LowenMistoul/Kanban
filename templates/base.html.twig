@@ -18,6 +18,7 @@
                 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
                 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
+                var dateModifier=false;
                 //gestion du date picker
                 $('.datepicker').datepicker({
                     dateFormat: 'yy-mm-dd',
@@ -28,6 +29,7 @@
                 $(".datepicker").on("focus", function() {
                     $(".ui-datepicker-calendar").css({"width":"300px"});
                     $(this).css("margin-bottom","15rem");
+                    dateModifier=true;
                 });
    
                 $(".datepicker").on("focusout", function() {
@@ -84,7 +86,7 @@
                     var tableauId =$(".tableau").attr('id');
                     var colonne = $('#selectedColonne'+id).find(":selected").val();
                     var date=$( "#date"+id).datepicker( "getDate" );
-                    if(date != null){
+                    if(dateModifier){
                         var str = date.toLocaleDateString();
                     }else{
                         str = "...";

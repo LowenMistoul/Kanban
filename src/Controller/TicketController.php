@@ -67,7 +67,7 @@ class TicketController extends AbstractController
             $id = (int)$tableauId;
             $ticket->setName($name);
             $ticket->setDescription($description);
-            if($date!=""){
+            if($date!="..."){
                 $ticket->setDate(new \DateTime($date));
             }
             if($colonneId != "Déplacer ce ticket"){
