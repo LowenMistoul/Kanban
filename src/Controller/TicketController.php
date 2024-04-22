@@ -25,15 +25,19 @@ class TicketController extends AbstractController
         return $this->render('security/acces.html.twig');
     }
 
-    #[Route('/tableau/newTicket/{id}', name: 'app_ticket_new', methods: ['GET', 'POST'])]
-    public function newTicket($id,TableauRepository $tableauRepository,ColonneRepository $colonneRepository,Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/tableau/newTicket/{id}/{colonne?nope}', name: 'app_ticket_new', methods: ['GET', 'POST'])]
+    public function newTicket($id,$colonne,TableauRepository $tableauRepository,ColonneRepository $colonneRepository,Request $request, EntityManagerInterface $entityManager): Response
     {   
         
         $ticket = new Ticket();
         $colonnes = $colonneRepository->findByTableauId($id);
         $tableau = $tableauRepository->findOneById($id);
         $ticket->setTableau($tableau);
-        $ticket->setColonne($colonnes[0]);
+        if($colonne=='nope'){
+            $ticket->setColonne($colonnes[0]);
+        }else{
+            $ticket->setColonne($colonneRepository->findOneById($colonne));
+        }
         $form = $this->createForm(TicketType::class, $ticket);
         $form->handleRequest($request);
 

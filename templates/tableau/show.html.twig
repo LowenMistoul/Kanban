@@ -150,6 +150,7 @@
                                     </a>
                                 {% endif %}
                             {% endfor %}
+                            <button data-bs-toggle="modal" data-bs-target="#voirTicketModal{{ticket.id}}" onclick={{set colon = colonne.id}}><button>
                         </div>        
                     </div>
                 {% endfor %} 
@@ -311,7 +312,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        {{ form_start(form,{'action' : path('app_ticket_new',{'id':tableau.id})}) }}
+                        {{ form_start(form,{'action' : path('app_ticket_new',{'id':tableau.id,'colonne':colon})}) }}
                             <div style="display:flex;flex-direction:column;" class="mb-3">
                                 <label for="ticketName" class="form-label">Name</label>
                                 {{ form_widget(form.name) }}
