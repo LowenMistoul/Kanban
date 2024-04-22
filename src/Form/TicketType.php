@@ -20,7 +20,7 @@ class TicketType extends AbstractType
             ->add('description',TextareaType::class,[
                 'attr'=>['style'=>'height:150px']
             ])
-            //->add('colonne',EntityType::class, ['class' => Colonne::class, 'choice_label' => 'name' ])
+            ->add('colonne',EntityType::class, ['class' => Colonne::class, 'choice_label' => 'name' ])
         ;
     }
 

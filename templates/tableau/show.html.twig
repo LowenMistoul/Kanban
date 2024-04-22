@@ -320,6 +320,10 @@
                                 <label for="description" class="form-label">Description</label>
                                 {{ form_widget(form.description) }}
                             </div>
+                            <div style="display:flex;flex-direction:column;" class="mb-3">
+                                <label for="description" class="form-label">Colonne</label>
+                                {{ form_widget(form.colonne) }}
+                            </div>
                         <br/>
                         <div style="display:flex;">
                             <button style="width:100px;margin:0 auto;" class="btn btn btn-primary">{{ button_label|default('Save') }}</button>
